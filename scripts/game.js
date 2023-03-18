@@ -6,8 +6,14 @@ class Game {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
-  init() {}
-}
+  init(level) {
+    this.clear();
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    //image.draw();
+    level.start();
+    player.update();
+    playerMovement();
 
-newGame = new Game();
-newGame.init();
+    requestAnimationFrame(this.init);
+  }
+}
