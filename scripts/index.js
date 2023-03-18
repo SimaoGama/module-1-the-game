@@ -7,7 +7,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 //set gravity
-let gravity = 2.5;
+let gravity = 0.7;
 
 class Player {
   constructor(color) {
@@ -58,27 +58,45 @@ const keys = {
 };
 
 playerMovement = () => {
-  if (keys.right.pressed) {
+  if (keys.right.pressed && player.position.x < canvas.width / 2) {
     player.speed.x = 5;
-  } else if (keys.left.pressed) {
+  } else if (keys.left.pressed && player.position.x > 200) {
     player.speed.x = -5;
-  } else player.speed.x = 0;
+  } else {
+    player.speed.x = 0;
+    // background
+    if(keys.right.pressed){
+      platform.position.x -= 5
+      platform2.position.x -= 5
+      platform3.position.x -= 5
+      platform4.position.x -= 5
+      platform5.position.x -= 5
+    } else if (keys.left.pressed){
+      platform.position.x += 5
+      platform2.position.x += 5
+      platform3.position.x += 5
+      platform4.position.x += 5
+      platform5.position.x += 5
+    }
+  }
 };
 
-collision = () => {
+collisionDetection = () => {
   if (
-    player.position.x < platform.position.x + platform.width &&
-    player.position.x + player.width > platform.position.x &&
-    player.position.y < platform.position.y + platform.height &&
-    player.position.y + player.height > platform.position.y
+    player.position.y + player.speed.y + player.height >= platform.position.y &&
+    player.position.y + player.height <= platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width
   ) {
-    player.position.y = 0;
     player.speed.y = 0;
   }
 };
 
 let player = new Player('blue');
 let platform = new Platform({ x: 900, y: 700 });
+let platform2 = new Platform({ x: 1200, y: 500 });
+let platform3 = new Platform({ x: 1400, y: 300 });
+let platform4 = new Platform({ x: 700, y: 500 });
+let platform5 = new Platform({ x: 1900, y: 300 });
+
 player.draw();
 platform.draw(); // test
 
@@ -86,10 +104,15 @@ animateGame = () => {
   requestAnimationFrame(animateGame);
   player.clear();
   player.update();
-  platform.draw();
+  platform.activate(player)
+  platform2.activate(player)
+  platform3.activate(player)
+  platform4.activate(player)
+  platform5.activate(player)
 
   playerMovement();
-  collision();
+  
+  collisionDetection();
 };
 
 // start game
@@ -107,7 +130,7 @@ window.addEventListener('keydown', event => {
       keys.left.pressed = true;
       break;
     case ' ':
-      player.speed.y -= 35;
+      player.speed.y -= 25;
       break;
   }
 });
