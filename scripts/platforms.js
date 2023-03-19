@@ -1,17 +1,19 @@
 class Platform {
-  constructor({ x, y }) {
+  constructor({ x, y, image}) {
     this.position = {
-      x: x,
-      y: y
+      x,
+      y
     };
-
-    this.height = 50;
-    this.width = 150;
+    this.image = image;
+    this.height = this.image.height;
+    this.width = this.image.width;
   }
 
   draw() {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // ctx.fillStyle = 'black';
+    // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    ctx.drawImage(this.image, this.position.x, this.position.y)
+
   }
 
   collision(player) {
@@ -22,6 +24,14 @@ class Platform {
       player.position.x <= this.position.x + this.width
     ) {
       player.speed.y = 0;
+    }
+
+    if(frames > 3000){w
+      console.log("LEVEL CLEARED")
+    }
+
+    if (player.position.y > canvas.height){
+      initGame()
     }
   }
 

@@ -40,8 +40,10 @@ class Player {
     //gravity
     if (this.position.y + this.height + this.speed.y <= canvas.height) {
       this.speed.y += this.gravity;
-    } else {
-      this.speed.y = 0;
-    }
+    } 
+    // makes player fall out of image
+    // else {
+    //   this.speed.y = 0;
+    // }
   }
 }
