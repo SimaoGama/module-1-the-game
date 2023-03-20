@@ -1,7 +1,7 @@
 class Levels {
   constructor(player) {
     this.player = player;
-    this.frames = 0
+    this.frames = 0;
   }
 
   playerMovement = () => {
@@ -11,29 +11,32 @@ class Levels {
       player.speed.x = -5;
     } else {
       player.speed.x = 0;
-  
+
       // background
-  
+
       if (keys.right.pressed) {
-        this.frames += 5
-        platforms.forEach(platform =>{
-          platform.position.x -= 5
+        this.frames += 5;
+        platforms.forEach(platform => {
+          platform.position.x -= 5;
+        });
+        gameObjects.forEach(platform => {
+          platform.position.x -= 4;
         });
         floor.position.x -= 5;
         floor2.position.x -= 5;
       } else if (keys.left.pressed) {
-        this.frames -= 5
-        platforms.forEach(platform =>{
-          platform.position.x += 5
+        this.frames -= 5;
+        platforms.forEach(platform => {
+          platform.position.x += 5;
         });
-  
+        gameObjects.forEach(platform => {
+          platform.position.x += 4;
+        });
         floor.position.x += 5;
         floor2.position.x += 5;
       }
     }
   };
-
-  
 }
 
 class LevelOne extends Levels {
@@ -58,9 +61,7 @@ class LevelOne extends Levels {
   //   this.platforms.forEach((platform) => platform.activate(player));
   // }
 
-  checkLevelClear(player){
-
-  }
+  checkLevelClear(player) {}
 
   start(player) {
     requestAnimationFrame(this.start);

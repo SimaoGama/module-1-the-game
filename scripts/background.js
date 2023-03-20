@@ -8,13 +8,11 @@ class Background {
   }
 }
 
-
-
 class GenericBackground {
-  constructor({ x, y, image}) {
+  constructor({ x, y, image }) {
     this.position = {
       x,
-      y
+      y: canvas.height - gameObject1.height + 60
     };
     this.image = image;
     this.height = 50;
@@ -22,7 +20,7 @@ class GenericBackground {
   }
 
   draw() {
-    ctx.drawImage(this.image, this.position.x, this.position.y)
+    ctx.drawImage(this.image, this.position.x, this.position.y);
     //ctx.drawImage(this.image, this.position.x, this.position.y)
   }
 }

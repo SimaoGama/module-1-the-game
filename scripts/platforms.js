@@ -1,5 +1,5 @@
 class Platform {
-  constructor({ x, y, image}) {
+  constructor({ x, y, image }) {
     this.position = {
       x,
       y
@@ -12,8 +12,7 @@ class Platform {
   draw() {
     // ctx.fillStyle = 'black';
     // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    ctx.drawImage(this.image, this.position.x, this.position.y)
-
+    ctx.drawImage(this.image, this.position.x, this.position.y);
   }
 
   collision(player) {
@@ -26,12 +25,13 @@ class Platform {
       player.speed.y = 0;
     }
 
-    if(frames > 3000){w
-      console.log("LEVEL CLEARED")
+    if (frames > 3000) {
+      console.log('LEVEL CLEARED');
+      initGame(); //restarts the level, ideally starts level 2
     }
 
-    if (player.position.y > canvas.height){
-      initGame()
+    if (player.position.y > canvas.height) {
+      initGame();
     }
   }
 
