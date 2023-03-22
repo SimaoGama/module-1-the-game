@@ -120,6 +120,7 @@ const playerMovement = () => {
 
     if (keys.right.pressed) {
       frames += 5;
+      player.increaseIndex();
       console.log(frames);
 
       platforms.forEach(platform => {
@@ -133,6 +134,7 @@ const playerMovement = () => {
       floor.position.x -= 5;
       //floor2.position.x -= 5;
     } else if (keys.left.pressed) {
+      player.decreaseIndex();
       platforms.forEach(platform => {
         platform.position.x += 5;
       });

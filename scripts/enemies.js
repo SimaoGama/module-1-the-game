@@ -15,15 +15,6 @@ class Enemy {
     this.colision = false;
     this.gravity = 0.8;
     this.loaded = false;
-
-    enemyJs.addEventListener('load', () => {
-      //once the img is loaded, draw it
-      this.loaded = true;
-      this.img = playerImage;
-      this.draw();
-    });
-
-    enemyJs.src = 'images/enemies/js-enemy.png';
   }
 
   draw() {
