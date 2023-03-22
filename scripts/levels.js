@@ -1,8 +1,13 @@
 class Levels {
-  constructor(player) {
+  constructor(player, image) {
     this.player = player;
     this.frames = 0;
+    this.image = image;
   }
+
+  drawBackground = image => {
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+  };
 
   playerMovement = () => {
     if (keys.right.pressed && player.position.x < canvas.width / 2) {
@@ -19,9 +24,9 @@ class Levels {
         platforms.forEach(platform => {
           platform.position.x -= 5;
         });
-        gameObjects.forEach(platform => {
-          platform.position.x -= 4;
-        });
+        // gameObjects.forEach(platform => {
+        //   platform.position.x -= 4;
+        // });
         floor.position.x -= 5;
         floor2.position.x -= 5;
       } else if (keys.left.pressed) {
@@ -29,9 +34,9 @@ class Levels {
         platforms.forEach(platform => {
           platform.position.x += 5;
         });
-        gameObjects.forEach(platform => {
-          platform.position.x += 4;
-        });
+        // gameObjects.forEach(platform => {
+        //   platform.position.x += 4;
+        // });
         floor.position.x += 5;
         floor2.position.x += 5;
       }
@@ -40,9 +45,12 @@ class Levels {
 }
 
 class LevelOne extends Levels {
-  constructor(player, frames) {
-    super(player, frames);
+  constructor(player, frames, image) {
+    super(player, image);
     this.platforms = [];
+    this.player = player;
+    this.frames = frames;
+    this.image = backgroundImage;
   }
 
   // lvlOnePlatforms(player) {
@@ -63,9 +71,14 @@ class LevelOne extends Levels {
 
   checkLevelClear(player) {}
 
-  start(player) {
+  start() {
+    this.drawBackground(this.image);
+    this.player.update();
+    enemy1.init();
+    enemy2.init();
     requestAnimationFrame(this.start);
     //lvlOnePlatforms(player);
     this.playerMovement();
+    this.player.update();
   }
 }

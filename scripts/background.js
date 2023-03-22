@@ -12,11 +12,11 @@ class GenericBackground {
   constructor({ x, y, image }) {
     this.position = {
       x,
-      y: canvas.height - gameObject1.height + 60
+      y
     };
     this.image = image;
-    this.height = 50;
-    this.width = 150;
+    this.height = this.image.height;
+    this.width = this.image.width;
   }
 
   draw() {

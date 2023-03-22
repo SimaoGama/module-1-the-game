@@ -4,6 +4,8 @@ console.log('JS loaded');
 const canvas = document.getElementById('ironhacker');
 const ctx = canvas.getContext('2d');
 
+const layover = document.getElementById('layover');
+
 const backgroundImage = new Image();
 // backgroundImage.src = '../images/backgrounds/Sidescroller-background.png';
 backgroundImage.src = '../images/backgrounds/BG.png';
@@ -17,8 +19,15 @@ platformImage.src = './images/platform.png';
 const gameObject1 = new Image();
 gameObject1.src = './images/gameobject1.png';
 
-const img = new Image();
-img.src = `images/player/Run (${0}).png`;
+const javaScriptBackground = new Image();
+javaScriptBackground.src = 'images/enemies/js-enemy.png';
+const htmlBackground = new Image();
+htmlBackground.src = 'images/enemies/html-enemy.png';
+const cssBackground = new Image();
+cssBackground.src = 'images/enemies/css-enemy.png';
+
+const playerImage = new Image();
+playerImage.src = `images/player/Run (${16}).png`;
 
 // const playerSprite = new Image();
 
@@ -45,8 +54,6 @@ createImage = source => {
 
 let frames = 0;
 let player = new Player('blue');
-let enemy1 = new Enemy({ x: 500, y: 500 }, player);
-let enemy2 = new Enemy({ x: 800, y: 500 }, player);
 let levelOne = new LevelOne(player);
 let game = new Game();
 
@@ -64,82 +71,42 @@ let floor = new Platform({ x: 0, y: canvas.height - 80, image: platformImage });
 // floor2.width = 1500;
 // floor2.height = canvas.height - 500;
 
-let hills = new GenericBackground({ x: 0, y: 300, image: paralaxBackground });
+let hills = new GenericBackground({ x: 0, y: 500, image: paralaxBackground });
 
 //lvl 1 platforms
 let platforms = [
-  new Platform({ x: 900, y: 700, image: platformImage }),
-  new Platform({ x: 1200, y: 500, image: platformImage }),
-  new Platform({ x: 1400, y: 300, image: platformImage }),
-  new Platform({ x: 700, y: 500, image: platformImage }),
-  new Platform({ x: 1900, y: 300, image: platformImage }),
-  new Platform({ x: 2100, y: 700, image: platformImage }),
-  new Platform({ x: 2500, y: 500, image: platformImage }),
-  new Platform({ x: 3100, y: 400, image: platformImage })
+  new Platform({ x: -500, y: canvas.height - 80, image: platformImage }),
+  new Platform({ x: 1200, y: 700, image: platformImage }),
+  new Platform({ x: 1500, y: 1500, image: platformImage }),
+  new Platform({ x: 2700, y: 300, image: platformImage }),
+  new Platform({ x: 3200, y: 500, image: platformImage }),
+  new Platform({ x: 3700, y: 300, image: platformImage }),
+  new Platform({ x: 4900, y: 700, image: platformImage }),
+  new Platform({ x: 5500, y: 500, image: platformImage }),
+  new Platform({ x: 6100, y: 400, image: platformImage }),
+  new Platform({ x: 8100, y: 400, image: platformImage }),
+  new Platform({ x: 9000, y: canvas.height - 80, image: platformImage }),
+  new Platform({ x: 9500, y: canvas.height - 80, image: platformImage }),
+  new Platform({ x: 1000, y: canvas.height - 80, image: platformImage })
 ];
 
 let gameObjects = [
   new GenericBackground({
-    x: 0,
-    y: canvas.height - gameObject1.height + 60,
-    image: gameObject1
+    x: -500,
+    y: canvas.height - javaScriptBackground.height - 160,
+    image: javaScriptBackground
   }),
   new GenericBackground({
-    x: 1800,
-    y: canvas.height - gameObject1.height + 60,
-    image: gameObject1
+    x: 2500,
+    y: canvas.height - htmlBackground.height,
+    image: htmlBackground
   }),
   new GenericBackground({
-    x: 2600,
-    y: canvas.height - gameObject1.height + 60,
-    image: gameObject1
+    x: 4500,
+    y: canvas.height - cssBackground.height,
+    image: cssBackground
   })
 ];
-
-// restarts level/game if you die
-function initGame() {
-  frames = 0;
-  player = new Player('blue');
-  enemy1 = new Enemy({ x: 500, y: 500 }, player);
-  enemy2 = new Enemy({ x: 800, y: 500 }, player);
-  levelOne = new LevelOne(player);
-  game = new Game();
-
-  //game testing
-  floor = new Platform({ x: 0, y: canvas.height - 80, image: platformImage });
-
-  hills = new GenericBackground({ x: 0, y: 300, image: paralaxBackground });
-
-  //lvl 1 platforms
-  platforms = [
-    new Platform({ x: 900, y: 700, image: platformImage }),
-    new Platform({ x: 1200, y: 500, image: platformImage }),
-    new Platform({ x: 1400, y: 300, image: platformImage }),
-    new Platform({ x: 700, y: 500, image: platformImage }),
-    new Platform({ x: 1900, y: 300, image: platformImage }),
-    new Platform({ x: 2100, y: 700, image: platformImage }),
-    new Platform({ x: 2500, y: 500, image: platformImage }),
-    new Platform({ x: 3100, y: 400, image: platformImage })
-  ];
-
-  gameObjects = [
-    new GenericBackground({
-      x: 0,
-      y: canvas.height - gameObject1.height + 60,
-      image: gameObject1
-    }),
-    new GenericBackground({
-      x: 1800,
-      y: canvas.height - gameObject1.height + 60,
-      image: gameObject1
-    }),
-    new GenericBackground({
-      x: 2600,
-      y: canvas.height - gameObject1.height + 60,
-      image: gameObject1
-    })
-  ];
-}
 
 const playerMovement = () => {
   if (keys.right.pressed && player.position.x < canvas.width / 2) {
@@ -159,8 +126,9 @@ const playerMovement = () => {
         platform.position.x -= 5;
       });
       gameObjects.forEach(platform => {
-        platform.position.x -= 4;
+        platform.position.x -= 5;
       });
+
       hills.position.x -= 2;
       floor.position.x -= 5;
       //floor2.position.x -= 5;
@@ -169,8 +137,11 @@ const playerMovement = () => {
         platform.position.x += 5;
       });
       gameObjects.forEach(platform => {
-        platform.position.x += 4;
+        platform.position.x += 5;
       });
+      // gameObjects.forEach(platform => {
+      //   platform.position.x += 4;
+      // });
       frames -= 5;
       hills.position.x += 2;
       floor.position.x += 5;
@@ -187,8 +158,6 @@ animateGame = () => {
   gameObjects.forEach(element => {
     element.draw();
   });
-  enemy1.init();
-  enemy2.init();
   player.update();
   playerMovement();
 
@@ -199,8 +168,8 @@ animateGame = () => {
   floor.activate(player);
   //floor2.activate(player);
 
-  floor.activate(enemy1);
-  floor.activate(enemy2);
+  // floor.activate(finishingLine1);
+  // floor.activate(enemy2);
   // floor2.activate(enemy1);
   // floor2.activate(enemy2);
 

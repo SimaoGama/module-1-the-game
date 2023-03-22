@@ -25,7 +25,7 @@ class Platform {
       player.speed.y = 0;
     }
 
-    if (frames > 3000) {
+    if (frames > 17000) {
       console.log('LEVEL CLEARED');
       initGame(); //restarts the level, ideally starts level 2
     }

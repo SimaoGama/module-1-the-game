@@ -1,5 +1,5 @@
 class Enemy {
-  constructor({ x, y }, player) {
+  constructor({ x, y, player, image }) {
     this.position = {
       x: x,
       y: y
@@ -8,16 +8,28 @@ class Enemy {
       x: 0,
       y: 1
     };
+    this.image = image;
     this.height = 50;
     this.width = 50;
     this.player = player;
     this.colision = false;
     this.gravity = 0.8;
+    this.loaded = false;
+
+    enemyJs.addEventListener('load', () => {
+      //once the img is loaded, draw it
+      this.loaded = true;
+      this.img = playerImage;
+      this.draw();
+    });
+
+    enemyJs.src = 'images/enemies/js-enemy.png';
   }
 
   draw() {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // ctx.fillStyle = 'red';
+    // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    ctx.drawImage(enemyJs, this.position.x, this.position.y);
   }
 
   attack() {}

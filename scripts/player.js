@@ -25,14 +25,14 @@ class Player {
     this.loaded = false;
 
     // const img = new Image();
-    img.addEventListener('load', () => {
+    playerImage.addEventListener('load', () => {
       //once the img is loaded, draw it
       this.loaded = true;
-      this.img = img;
+      this.img = playerImage;
       this.draw();
     });
 
-    img.src = `images/player/Run (${0}).png`;
+    playerImage.src = `images/player/Run (${1}).png`;
   }
 
   draw() {
@@ -56,7 +56,7 @@ class Player {
     console.log(this.index);
 
     this.index -= 1;
-    if (this.index < 0) {
+    if (this.index < 1) {
       this.index = 15;
     }
   }
