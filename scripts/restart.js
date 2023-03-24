@@ -2,9 +2,9 @@
 
 function initGame() {
   frames = 0;
-  player = new Player("blue");
+  player = new Player();
   levelOne = new LevelOne(player);
-  game = new Game();
+  game = new Game(player, levelOne);
 
   //game testing
   floor = new Platform({ x: 0, y: canvas.height - 80, image: platformImage });

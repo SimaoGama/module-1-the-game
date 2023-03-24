@@ -38,6 +38,22 @@ cssBackground.src = "images/enemies/css-enemy.png";
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+displayStatusText = () => {
+  ctx.fillStyle = "black";
+  ctx.font = "20px Helvetica";
+  if (frames < 0) {
+    ctx.fillText(`Score: 0`, 20, 40);
+  } else ctx.fillText(`Score: ${frames}`, 20, 40);
+
+  // ctx.fillStyle = "black";
+  // if (frames < 0) {
+  //   ctx.fillText(`Score: 0`, 20, 52);
+  // } else ctx.fillText(`Score: ${frames}`, 20, 52);
+
+  ctx.fillText(`Level: ${levelOne.name}`, 20, 90);
+  ctx.fillText(`Time: 00:00`, 20, 140);
+};
+
 //gravity
 gravity = () => {
   if (this.position.y + this.height + this.speed.y <= canvas.height) {
@@ -114,7 +130,7 @@ let gameObjects = [
 const playerMovement = () => {
   if (keys.right.pressed && player.position.x < canvas.width / 2) {
     player.speed.x = 5;
-  } else if (keys.left.pressed && player.position.x > 200) {
+  } else if (keys.left.pressed && player.position.x > 400) {
     player.speed.x = -5;
   } else {
     player.speed.x = 0;
@@ -163,13 +179,13 @@ animateGame = () => {
   gameObjects.forEach((element) => {
     element.draw();
   });
-  player.update();
-  playerMovement();
 
   platforms.forEach((platform) => {
     platform.activate(player);
   });
 
+  player.update();
+  playerMovement();
   floor.activate(player);
   //floor2.activate(player);
 
@@ -177,7 +193,7 @@ animateGame = () => {
   // floor.activate(enemy2);
   // floor2.activate(enemy1);
   // floor2.activate(enemy2);
-
+  displayStatusText();
   requestAnimationFrame(animateGame);
 };
 
@@ -196,9 +212,10 @@ window.addEventListener("keydown", (event) => {
     case "a":
       player.speed.x -= 5;
       keys.left.pressed = true;
+      player.currentSprite = player.sprites.walking.left;
       break;
     case " ":
-      player.speed.y -= 25;
+      player.speed.y -= 20;
       break;
   }
 });
@@ -208,13 +225,13 @@ window.addEventListener("keyup", (event) => {
     case "d":
       player.speed.x = 0;
       keys.right.pressed = false;
-      player.currentSprite = player.sprites.stand.right;
+      player.currentSprite = player.sprites.standing.right;
       break;
     case "a":
       player.speed.x = 0;
       keys.left.pressed = false;
-      player.currentSprite = player.sprites.stand.left;
-      player.currentCrop = 1000;
+      player.currentSprite = player.sprites.standing.left;
+
       break;
   }
 });

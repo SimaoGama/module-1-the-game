@@ -2,7 +2,7 @@ class Platform {
   constructor({ x, y, image }) {
     this.position = {
       x,
-      y
+      y,
     };
     this.image = image;
     this.height = this.image.height;
@@ -25,8 +25,8 @@ class Platform {
       player.speed.y = 0;
     }
 
-    if (frames > 17000) {
-      console.log('LEVEL CLEARED');
+    if (frames > 12000) {
+      console.log("LEVEL CLEARED");
       initGame(); //restarts the level, ideally starts level 2
     }
 
