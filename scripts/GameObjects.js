@@ -7,6 +7,7 @@ class GameObjects {
     //this.image = image;
     this.height = 50;
     this.width = 50;
+    this.currentPositionY = 0;
   }
 
   left = () => this.position.x;
@@ -23,11 +24,15 @@ class GameObjects {
     );
   };
 
+  moveUp() {
+    this.position.y--;
+  }
+
   draw() {
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     this.position.y++;
-
+    setInterval(this.moveUp, '2000');
     //ctx.drawImage(this.image, this.position.x, this.position.y);
   }
 

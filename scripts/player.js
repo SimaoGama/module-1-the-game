@@ -17,8 +17,8 @@ class Player {
       x: 0,
       y: 0
     };
-    this.width = 50;
-    this.height = 60;
+    this.width = 150;
+    this.height = 160;
 
     this.gravity = 0.5;
     this.index = 1;
@@ -49,26 +49,26 @@ class Player {
   }
 
   draw() {
-    ctx.fillStyle = 'blue';
-    //this.img.src = `images/player/Player_Idle.png`;
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // ctx.fillStyle = 'blue';
+    // //this.img.src = `images/player/Player_Idle.png`;
+    // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-    // ctx.drawImage(
-    //   this.currentSprite,
-    //   614 * this.playerFrames,
-    //   0,
-    //   614,
-    //   500,
-    //   this.position.x,
-    //   this.position.y,
-    //   this.width,
-    //   this.height
-    // );
+    ctx.drawImage(
+      this.currentSprite,
+      614 * this.playerFrames,
+      0,
+      614,
+      500,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
+    );
 
-    // this.playerFrames += 5;
-    // if (this.playerFrames >= 30) {
-    //   this.playerFrames = 0;
-    // }
+    this.playerFrames += 5;
+    if (this.playerFrames >= 30) {
+      this.playerFrames = 0;
+    }
   }
 
   clear() {
