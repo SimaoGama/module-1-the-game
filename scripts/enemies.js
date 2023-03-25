@@ -2,11 +2,11 @@ class Enemy {
   constructor({ x, y, player, image }) {
     this.position = {
       x: x,
-      y: y
+      y: y,
     };
     this.speed = {
       x: 0,
-      y: 1
+      y: 1,
     };
     this.image = image;
     this.height = 50;
@@ -20,7 +20,7 @@ class Enemy {
   draw() {
     // ctx.fillStyle = 'red';
     // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    ctx.drawImage(enemyJs, this.position.x, this.position.y);
+    ctx.drawImage(this.image, this.position.x, this.position.y);
   }
 
   attack() {}
@@ -35,7 +35,7 @@ class Enemy {
     }
   }
 
-  init() {
+  animate() {
     this.draw();
     this.movement();
   }

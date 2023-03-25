@@ -1,57 +1,35 @@
 console.log("JS loaded");
 
+// game area
+
 // DOM + Images
 const canvas = document.getElementById("ironhacker");
 const ctx = canvas.getContext("2d");
-
 const layover = document.getElementById("layover");
 
-const backgroundImage = new Image();
-// backgroundImage.src = '../images/backgrounds/Sidescroller-background.png';
-backgroundImage.src = "../images/backgrounds/BG.png";
-
-const paralaxBackground = new Image();
-paralaxBackground.src = "../images/hills.png";
-
-const platformImage = new Image();
-platformImage.src = "./images/platform.png";
-
-const gameObject1 = new Image();
-gameObject1.src = "./images/gameobject1.png";
-
-const javaScriptBackground = new Image();
-javaScriptBackground.src = "images/enemies/js-enemy.png";
-const htmlBackground = new Image();
-htmlBackground.src = "images/enemies/html-enemy.png";
-const cssBackground = new Image();
-cssBackground.src = "images/enemies/css-enemy.png";
-
-// const playerIdle = new Image();
-// playerIdle.src = `images/player/Player_Idle.png`;
-
-// const playerRunningRight = new Image();
-// playerIdle.src = `images/player/Player_Idle.png`;
-
-// const playerSprite = new Image();
-
-// game area
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+const backgroundImage = createImage("images/backgrounds/nordic.jpg");
+const paralaxBackground = createImage("../images/hills.png");
+const platformImage = createImage("./images/platform.png");
+const gameObject1 = createImage("./images/gameobject1.png");
+const javaScriptBackground = createImage("images/enemies/js-enemy.png");
+const htmlBackground = createImage("images/enemies/html-enemy.png");
+const cssBackground = createImage("images/enemies/css-enemy.png");
+
+//const mossImage = createImage("images/download.png");
 
 displayStatusText = () => {
   ctx.fillStyle = "black";
   ctx.font = "20px Helvetica";
-  if (frames < 0) {
-    ctx.fillText(`Score: 0`, 20, 40);
-  } else ctx.fillText(`Score: ${frames}`, 20, 40);
-
-  // ctx.fillStyle = "black";
-  // if (frames < 0) {
-  //   ctx.fillText(`Score: 0`, 20, 52);
-  // } else ctx.fillText(`Score: ${frames}`, 20, 52);
+  if (game.frames < 0) {
+    ctx.fillText(`Frames: 0`, 20, 40);
+  } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
 
   ctx.fillText(`Level: ${levelOne.name}`, 20, 90);
-  ctx.fillText(`Time: 00:00`, 20, 140);
+  ctx.fillText(`Points: ${game.points}`, 20, 140);
+  ctx.fillText(`Timer: ${convertSeconds(game.timer)}`, 20, 190);
 };
 
 //gravity
@@ -63,50 +41,55 @@ gravity = () => {
   }
 };
 
-//assets creation
-
-const createImage = (source) => {
+//image creation
+function createImage(source) {
   const image = new Image();
   image.src = source;
   return image;
-};
+}
 
-let frames = 0;
+function convertSeconds(seconds) {
+  let min = Math.floor(seconds / 60);
+  let sec = seconds % 60;
+  return `${min} : ${sec}`;
+}
+
+//game assets
 let player = new Player("blue");
 let levelOne = new LevelOne(player);
-let game = new Game();
-
-// levelOne.init();
-// const image = new Background(backgroundImage);
-
-//lvl 1 platforms
+let game = new Game(player, levelOne);
+let frames = game.frames;
+let enemies = [
+  new Enemy({ x: 0, y: 0, image: JavaScriptEnemy }),
+  new Enemy({ x: 100, y: 0, image: JavaScriptEnemy }),
+];
 
 //game testing
 let floor = new Platform({ x: 0, y: canvas.height - 80, image: platformImage });
-// floor.width = 10000;
-// floor.height = canvas.height - 500;
-
-// let floor2 = new Platform({ x: 1500, y: canvas.height - 80, image: platformImage });
-// floor2.width = 1500;
-// floor2.height = canvas.height - 500;
 
 let hills = new GenericBackground({ x: 0, y: 500, image: paralaxBackground });
 
 //lvl 1 platforms
 let platforms = [
   new Platform({ x: -500, y: canvas.height - 80, image: platformImage }),
-  new Platform({ x: 1200, y: 700, image: platformImage }),
-  new Platform({ x: 1500, y: 1500, image: platformImage }),
-  new Platform({ x: 2700, y: 300, image: platformImage }),
-  new Platform({ x: 3200, y: 500, image: platformImage }),
-  new Platform({ x: 3700, y: 300, image: platformImage }),
-  new Platform({ x: 4900, y: 700, image: platformImage }),
-  new Platform({ x: 5500, y: 500, image: platformImage }),
-  new Platform({ x: 6100, y: 400, image: platformImage }),
-  new Platform({ x: 8100, y: 400, image: platformImage }),
-  new Platform({ x: 9000, y: canvas.height - 80, image: platformImage }),
-  new Platform({ x: 9500, y: canvas.height - 80, image: platformImage }),
-  new Platform({ x: 1000, y: canvas.height - 80, image: platformImage }),
+  new Platform({ x: 1400, y: 500, image: htmlBackground }),
+  new Platform({ x: 2400, y: 300, image: javaScriptBackground }),
+  new Platform({ x: 3400, y: 500, image: htmlBackground }),
+  new Platform({ x: 4500, y: 600, image: cssBackground }),
+  new Platform({ x: 5300, y: 500, image: javaScriptBackground }),
+  new Platform({ x: 6500, y: 400, image: htmlBackground }),
+  new Platform({ x: 7900, y: 400, image: javaScriptBackground }),
+  new Platform({ x: 9000, y: canvas.height - 90, image: cssBackground }),
+  new Platform({ x: 9500, y: canvas.height - 90, image: javaScriptBackground }),
+  new Platform({ x: 10000, y: canvas.height - 90, image: htmlBackground }),
+  new Platform({ x: 11000, y: canvas.height - 90, image: cssBackground }),
+  new Platform({
+    x: 12000,
+    y: canvas.height - 90,
+    image: javaScriptBackground,
+  }),
+  new Platform({ x: 13000, y: canvas.height - 90, image: htmlBackground }),
+  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground }),
 ];
 
 let gameObjects = [
@@ -116,12 +99,17 @@ let gameObjects = [
     image: javaScriptBackground,
   }),
   new GenericBackground({
-    x: 2500,
-    y: canvas.height - htmlBackground.height,
+    x: 2800,
+    y: canvas.height - htmlBackground.height - 500,
     image: htmlBackground,
   }),
   new GenericBackground({
-    x: 4500,
+    x: 4800,
+    y: canvas.height - cssBackground.height,
+    image: cssBackground,
+  }),
+  new GenericBackground({
+    x: 9500,
     y: canvas.height - cssBackground.height,
     image: cssBackground,
   }),
@@ -138,9 +126,9 @@ const playerMovement = () => {
     // background
 
     if (keys.right.pressed) {
-      frames += 5;
+      game.frames += 5;
       // player.increaseIndex();
-      console.log(frames);
+      console.log(game.frames);
 
       platforms.forEach((platform) => {
         platform.position.x -= 5;
@@ -163,7 +151,7 @@ const playerMovement = () => {
       // gameObjects.forEach(platform => {
       //   platform.position.x += 4;
       // });
-      frames -= 5;
+      game.frames -= 5;
       hills.position.x += 2;
       floor.position.x += 5;
       //floor2.position.x += 5;
@@ -176,24 +164,24 @@ animateGame = () => {
   game.clear();
   ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
   hills.draw();
-  gameObjects.forEach((element) => {
-    element.draw();
-  });
+
+  // gameObjects.forEach((element) => {
+  //   element.draw();
+  //   element.activate();
+  // });
+
+  game.init();
 
   platforms.forEach((platform) => {
     platform.activate(player);
   });
 
-  player.update();
+  //player.update();
   playerMovement();
   floor.activate(player);
-  //floor2.activate(player);
 
-  // floor.activate(finishingLine1);
-  // floor.activate(enemy2);
-  // floor2.activate(enemy1);
-  // floor2.activate(enemy2);
   displayStatusText();
+  game.timer += 1;
   requestAnimationFrame(animateGame);
 };
 

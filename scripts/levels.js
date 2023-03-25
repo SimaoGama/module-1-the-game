@@ -76,8 +76,7 @@ class LevelOne extends Levels {
   start() {
     this.drawBackground(this.image);
     this.player.update();
-    enemy1.init();
-    enemy2.init();
+
     requestAnimationFrame(this.start);
     //lvlOnePlatforms(player);
     this.playerMovement();
