@@ -7,6 +7,14 @@ class Game {
     this.points = 0;
     this.timer = 0;
     this.currentTime = 0;
+    this.obstacles = [];
+  }
+
+  drawObstacles() {
+    this.obstacles.forEach(obstacle => {
+      obstacle.x -= 1;
+      obstacle.draw();
+    });
   }
 
   clear() {
@@ -20,8 +28,8 @@ class Game {
   checkGameWin() {
     if (this.frames > 13000) {
       this.currentTime = this.timer;
-      ctx.fillStyle = "green";
-      ctx.font = "120px Helvetica";
+      ctx.fillStyle = 'green';
+      ctx.font = '120px Helvetica';
       ctx.fillText(`LEVEL CLEARED!`, canvas.width / 2 - 450, canvas.height / 3);
       ctx.fillText(
         `Your Time: ${convertSeconds(this.currentTime)}!`,
@@ -32,15 +40,15 @@ class Game {
 
       setTimeout(() => {
         initGame();
-      }, "5000");
+      }, '5000');
     } else if (this.player.position.y > canvas.height) {
-      ctx.fillStyle = "red";
-      ctx.font = "150px Helvetica";
+      ctx.fillStyle = 'red';
+      ctx.font = '150px Helvetica';
       ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
 
       setTimeout(() => {
         initGame();
-      }, "2000");
+      }, '2000');
     }
   }
 

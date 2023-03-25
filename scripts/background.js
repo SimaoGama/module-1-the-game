@@ -12,7 +12,7 @@ class GenericBackground {
   constructor({ x, y, image }) {
     this.position = {
       x,
-      y,
+      y
     };
     this.image = image;
     this.height = this.image.height;

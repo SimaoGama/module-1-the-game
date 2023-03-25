@@ -1,35 +1,36 @@
-console.log("JS loaded");
+console.log('JS loaded');
 
 // game area
 
 // DOM + Images
-const canvas = document.getElementById("ironhacker");
-const ctx = canvas.getContext("2d");
-const layover = document.getElementById("layover");
+const canvas = document.getElementById('ironhacker');
+const ctx = canvas.getContext('2d');
+const layover = document.getElementById('layover');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const backgroundImage = createImage("images/backgrounds/nordic.jpg");
-const paralaxBackground = createImage("../images/hills.png");
-const platformImage = createImage("./images/platform.png");
-const gameObject1 = createImage("./images/gameobject1.png");
-const javaScriptBackground = createImage("images/enemies/js-enemy.png");
-const htmlBackground = createImage("images/enemies/html-enemy.png");
-const cssBackground = createImage("images/enemies/css-enemy.png");
+const backgroundImage = createImage('images/backgrounds/nordic.jpg');
+const paralaxBackground = createImage('../images/hills.png');
+const platformImage = createImage('./images/platform.png');
+// const gameObject1 = createImage('./images/gameobject1.png');
+const javaScriptBackground = createImage('images/enemies/js-enemy.png');
+const htmlBackground = createImage('images/enemies/html-enemy.png');
+const cssBackground = createImage('images/enemies/css-enemy.png');
 
 //const mossImage = createImage("images/download.png");
 
 displayStatusText = () => {
-  ctx.fillStyle = "black";
-  ctx.font = "20px Helvetica";
+  ctx.fillStyle = 'black';
+  ctx.font = '20px Helvetica';
   if (game.frames < 0) {
     ctx.fillText(`Frames: 0`, 20, 40);
   } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
 
   ctx.fillText(`Level: ${levelOne.name}`, 20, 90);
   ctx.fillText(`Points: ${game.points}`, 20, 140);
-  ctx.fillText(`Timer: ${convertSeconds(game.timer)}`, 20, 190);
+  ctx.fillText(`Time: ${(game.timer * 0.01).toFixed(1)}`, 20, 190);
+  //ctx.fillText(`Timer: ${convertSeconds(game.timer)}`, 20, 190);
 };
 
 //gravity
@@ -55,14 +56,10 @@ function convertSeconds(seconds) {
 }
 
 //game assets
-let player = new Player("blue");
+let player = new Player('blue');
 let levelOne = new LevelOne(player);
 let game = new Game(player, levelOne);
 let frames = game.frames;
-let enemies = [
-  new Enemy({ x: 0, y: 0, image: JavaScriptEnemy }),
-  new Enemy({ x: 100, y: 0, image: JavaScriptEnemy }),
-];
 
 //game testing
 let floor = new Platform({ x: 0, y: canvas.height - 80, image: platformImage });
@@ -86,33 +83,23 @@ let platforms = [
   new Platform({
     x: 12000,
     y: canvas.height - 90,
-    image: javaScriptBackground,
+    image: javaScriptBackground
   }),
   new Platform({ x: 13000, y: canvas.height - 90, image: htmlBackground }),
-  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground }),
+  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground })
 ];
 
-let gameObjects = [
-  new GenericBackground({
-    x: -500,
-    y: canvas.height - javaScriptBackground.height - 160,
-    image: javaScriptBackground,
-  }),
-  new GenericBackground({
-    x: 2800,
-    y: canvas.height - htmlBackground.height - 500,
-    image: htmlBackground,
-  }),
-  new GenericBackground({
-    x: 4800,
-    y: canvas.height - cssBackground.height,
-    image: cssBackground,
-  }),
-  new GenericBackground({
-    x: 9500,
-    y: canvas.height - cssBackground.height,
-    image: cssBackground,
-  }),
+let enemies = [
+  new Enemy({ x: 100, y: 0 }),
+  new Enemy({ x: 200, y: 0 }),
+  new Enemy({ x: 300, y: 0 })
+];
+
+let components = [
+  new GameObjects({ x: 1000, y: 300 }),
+  new GameObjects({ x: 1200, y: 600 }),
+  new GameObjects({ x: 2000, y: 700 }),
+  new GameObjects({ x: 25000, y: 300 })
 ];
 
 const playerMovement = () => {
@@ -123,6 +110,10 @@ const playerMovement = () => {
   } else {
     player.speed.x = 0;
 
+    // if (player.position.y < canvas.height) {
+    //   player.position.y = 0;
+    // }
+
     // background
 
     if (keys.right.pressed) {
@@ -130,11 +121,11 @@ const playerMovement = () => {
       // player.increaseIndex();
       console.log(game.frames);
 
-      platforms.forEach((platform) => {
+      platforms.forEach(platform => {
         platform.position.x -= 5;
       });
-      gameObjects.forEach((platform) => {
-        platform.position.x -= 5;
+      components.forEach(component => {
+        component.position.x -= 5;
       });
 
       hills.position.x -= 2;
@@ -142,11 +133,11 @@ const playerMovement = () => {
       //floor2.position.x -= 5;
     } else if (keys.left.pressed) {
       // player.decreaseIndex();
-      platforms.forEach((platform) => {
+      platforms.forEach(platform => {
         platform.position.x += 5;
       });
-      gameObjects.forEach((platform) => {
-        platform.position.x += 5;
+      components.forEach(component => {
+        component.position.x += 5;
       });
       // gameObjects.forEach(platform => {
       //   platform.position.x += 4;
@@ -172,7 +163,16 @@ animateGame = () => {
 
   game.init();
 
-  platforms.forEach((platform) => {
+  enemies.forEach(enemy => {
+    enemy.draw();
+    enemy.animate();
+  });
+
+  components.forEach(component => {
+    component.draw();
+  });
+
+  platforms.forEach(platform => {
     platform.activate(player);
   });
 
@@ -180,9 +180,9 @@ animateGame = () => {
   playerMovement();
   floor.activate(player);
 
-  displayStatusText();
   game.timer += 1;
   requestAnimationFrame(animateGame);
+  displayStatusText();
 };
 
 backgroundImage.onload = () => {
@@ -190,32 +190,32 @@ backgroundImage.onload = () => {
 };
 
 // event listeners
-window.addEventListener("keydown", (event) => {
+window.addEventListener('keydown', event => {
   switch (event.key) {
-    case "d":
+    case 'd':
       player.speed.x += 5;
       keys.right.pressed = true;
       player.currentSprite = player.sprites.walking.right;
       break;
-    case "a":
+    case 'a':
       player.speed.x -= 5;
       keys.left.pressed = true;
       player.currentSprite = player.sprites.walking.left;
       break;
-    case " ":
+    case ' ':
       player.speed.y -= 20;
       break;
   }
 });
 
-window.addEventListener("keyup", (event) => {
+window.addEventListener('keyup', event => {
   switch (event.key) {
-    case "d":
+    case 'd':
       player.speed.x = 0;
       keys.right.pressed = false;
       player.currentSprite = player.sprites.standing.right;
       break;
-    case "a":
+    case 'a':
       player.speed.x = 0;
       keys.left.pressed = false;
       player.currentSprite = player.sprites.standing.left;
@@ -224,6 +224,6 @@ window.addEventListener("keyup", (event) => {
   }
 });
 
-backgroundImage.addEventListener("load", () => {
+backgroundImage.addEventListener('load', () => {
   background = new Background(backgroundImage);
 });
