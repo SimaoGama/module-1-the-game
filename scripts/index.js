@@ -89,17 +89,28 @@ let platforms = [
   new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground })
 ];
 
-let enemies = [
-  new Enemy({ x: 100, y: 0 }),
-  new Enemy({ x: 200, y: 0 }),
-  new Enemy({ x: 300, y: 0 })
-];
+// let enemies = [
+//   new Enemy({ x: 100, y: 0 }),
+//   new Enemy({ x: 200, y: 0 }),
+//   new Enemy({ x: 300, y: 0 })
+// ];
 
-let components = [
-  new GameObjects({ x: 1000, y: 300 }),
-  new GameObjects({ x: 1200, y: 600 }),
-  new GameObjects({ x: 2000, y: 700 }),
-  new GameObjects({ x: 25000, y: 300 })
+let obstacles = [
+  new GameObjects({ x: 800, y: 300 }),
+  new GameObjects({ x: 1000, y: 600 }),
+  new GameObjects({ x: 1200, y: 0 }),
+  new GameObjects({ x: 2000, y: 0 }),
+  new GameObjects({ x: 2100, y: 600 }),
+  new GameObjects({ x: 2800, y: 700 }),
+  new GameObjects({ x: 3200, y: 100 }),
+  new GameObjects({ x: 3600, y: 1000 }),
+  new GameObjects({ x: 3900, y: 600 }),
+  new GameObjects({ x: 4200, y: 700 }),
+  new GameObjects({ x: 4500, y: 400 }),
+  new GameObjects({ x: 4750, y: 300 }),
+  new GameObjects({ x: 4900, y: 0 }),
+  new GameObjects({ x: 5000, y: 400 }),
+  new GameObjects({ x: 5200, y: 700 })
 ];
 
 const playerMovement = () => {
@@ -124,8 +135,8 @@ const playerMovement = () => {
       platforms.forEach(platform => {
         platform.position.x -= 5;
       });
-      components.forEach(component => {
-        component.position.x -= 5;
+      obstacles.forEach(obstacle => {
+        obstacle.position.x -= 5;
       });
 
       hills.position.x -= 2;
@@ -136,8 +147,8 @@ const playerMovement = () => {
       platforms.forEach(platform => {
         platform.position.x += 5;
       });
-      components.forEach(component => {
-        component.position.x += 5;
+      obstacles.forEach(obstacle => {
+        obstacle.position.x += 5;
       });
       // gameObjects.forEach(platform => {
       //   platform.position.x += 4;
@@ -161,15 +172,15 @@ animateGame = () => {
   //   element.activate();
   // });
 
-  game.init();
+  game.init(player, obstacles);
 
-  enemies.forEach(enemy => {
-    enemy.draw();
-    enemy.animate();
-  });
+  // enemies.forEach(enemy => {
+  //   enemy.draw();
+  //   enemy.animate();
+  // });
 
-  components.forEach(component => {
-    component.draw();
+  obstacles.forEach(obstacle => {
+    obstacle.draw();
   });
 
   platforms.forEach(platform => {
@@ -178,6 +189,7 @@ animateGame = () => {
 
   //player.update();
   playerMovement();
+  //game.collision(player, components);
   floor.activate(player);
 
   game.timer += 1;
