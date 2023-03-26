@@ -1,28 +1,38 @@
-console.log('JS loaded');
+console.log("JS loaded");
 
 // game area
 
 // DOM + Images
-const canvas = document.getElementById('ironhacker');
-const ctx = canvas.getContext('2d');
-const layover = document.getElementById('layover');
+const canvas = document.getElementById("ironhacker");
+const ctx = canvas.getContext("2d");
+const startMenu = document.getElementById("start-screen");
+const navBar = document.querySelector("nav");
+const startLevelOne = document.getElementById("level-one");
+const startLevelTwo = document.getElementById("level-two");
+const startLevelThree = document.getElementById("level-three");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const backgroundImage = createImage('images/backgrounds/nordic.jpg');
-const paralaxBackground = createImage('../images/hills.png');
-const platformImage = createImage('./images/platform.png');
+const backgroundImage = createImage("images/backgrounds/nordic.jpg");
+const paralaxBackground = createImage("../images/hills.png");
+const platformImage = createImage("./images/platform.png");
 // const gameObject1 = createImage('./images/gameobject1.png');
-const javaScriptBackground = createImage('images/enemies/js-enemy.png');
-const htmlBackground = createImage('images/enemies/html-enemy.png');
-const cssBackground = createImage('images/enemies/css-enemy.png');
+const javaScriptBackground = createImage("images/enemies/js-enemy.png");
+const htmlBackground = createImage("images/enemies/html-enemy.png");
+const cssBackground = createImage("images/enemies/css-enemy.png");
 
 //const mossImage = createImage("images/download.png");
 
+// toggleScreen = (id, toggle) => {
+//   let elementId = document.getElementById(id);
+//   let canvasDisplay = toggle ? "block" : "none";
+//   elementId.style.display = canvasDisplay;
+// };
+
 displayStatusText = () => {
-  ctx.fillStyle = 'black';
-  ctx.font = '20px Helvetica';
+  ctx.fillStyle = "black";
+  ctx.font = "20px Helvetica";
   if (game.frames < 0) {
     ctx.fillText(`Frames: 0`, 20, 40);
   } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
@@ -56,7 +66,7 @@ function convertSeconds(seconds) {
 }
 
 //game assets
-let player = new Player('blue');
+let player = new Player("blue");
 let levelOne = new LevelOne(player);
 let game = new Game(player, levelOne);
 let frames = game.frames;
@@ -83,10 +93,10 @@ let platforms = [
   new Platform({
     x: 12000,
     y: canvas.height - 90,
-    image: javaScriptBackground
+    image: javaScriptBackground,
   }),
   new Platform({ x: 13000, y: canvas.height - 90, image: htmlBackground }),
-  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground })
+  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground }),
 ];
 
 // let enemies = [
@@ -110,7 +120,7 @@ let obstacles = [
   new GameObjects({ x: 4750, y: 300 }),
   new GameObjects({ x: 4900, y: 0 }),
   new GameObjects({ x: 5000, y: 400 }),
-  new GameObjects({ x: 5200, y: 700 })
+  new GameObjects({ x: 5200, y: 700 }),
 ];
 
 const playerMovement = () => {
@@ -132,10 +142,10 @@ const playerMovement = () => {
       // player.increaseIndex();
       console.log(game.frames);
 
-      platforms.forEach(platform => {
+      platforms.forEach((platform) => {
         platform.position.x -= 5;
       });
-      obstacles.forEach(obstacle => {
+      obstacles.forEach((obstacle) => {
         obstacle.position.x -= 5;
       });
 
@@ -144,10 +154,10 @@ const playerMovement = () => {
       //floor2.position.x -= 5;
     } else if (keys.left.pressed) {
       // player.decreaseIndex();
-      platforms.forEach(platform => {
+      platforms.forEach((platform) => {
         platform.position.x += 5;
       });
-      obstacles.forEach(obstacle => {
+      obstacles.forEach((obstacle) => {
         obstacle.position.x += 5;
       });
       // gameObjects.forEach(platform => {
@@ -162,72 +172,62 @@ const playerMovement = () => {
 };
 
 //run game
-animateGame = () => {
-  game.clear();
-  ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-  hills.draw();
 
-  // gameObjects.forEach((element) => {
-  //   element.draw();
-  //   element.activate();
-  // });
+function startGame() {
+  animateLevelOne();
+}
 
-  game.init(player, obstacles);
+// function animateLevelOne() {
+//   game.clear();
+//   ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+//   hills.draw();
 
-  // enemies.forEach(enemy => {
-  //   enemy.draw();
-  //   enemy.animate();
-  // });
+//   game.init(player, obstacles);
 
-  obstacles.forEach(obstacle => {
-    obstacle.draw();
-  });
+//   obstacles.forEach((obstacle) => {
+//     obstacle.draw();
+//   });
 
-  platforms.forEach(platform => {
-    platform.activate(player);
-  });
+//   platforms.forEach((platform) => {
+//     platform.activate(player);
+//   });
 
-  //player.update();
-  playerMovement();
-  //game.collision(player, components);
-  floor.activate(player);
+//   //player.update();
+//   playerMovement();
+//   //game.collision(player, components);
+//   floor.activate(player);
 
-  game.timer += 1;
-  requestAnimationFrame(animateGame);
-  displayStatusText();
-};
-
-backgroundImage.onload = () => {
-  animateGame();
-};
-
+//   game.timer += 1;
+//   requestAnimationFrame(animateLevelOne);
+//   displayStatusText();
+// }
 // event listeners
-window.addEventListener('keydown', event => {
+window.addEventListener("keydown", (event) => {
   switch (event.key) {
-    case 'd':
+    case "d":
       player.speed.x += 5;
       keys.right.pressed = true;
       player.currentSprite = player.sprites.walking.right;
       break;
-    case 'a':
+    case "a":
       player.speed.x -= 5;
       keys.left.pressed = true;
       player.currentSprite = player.sprites.walking.left;
       break;
-    case ' ':
-      player.speed.y -= 20;
+    case " ":
+      player.speed.y -= 25;
       break;
   }
 });
 
-window.addEventListener('keyup', event => {
+window.addEventListener("keyup", (event) => {
   switch (event.key) {
-    case 'd':
+    case "d":
       player.speed.x = 0;
       keys.right.pressed = false;
       player.currentSprite = player.sprites.standing.right;
       break;
-    case 'a':
+    case "a":
       player.speed.x = 0;
       keys.left.pressed = false;
       player.currentSprite = player.sprites.standing.left;
@@ -236,6 +236,27 @@ window.addEventListener('keyup', event => {
   }
 });
 
-backgroundImage.addEventListener('load', () => {
+startLevelOne.addEventListener("click", () => {
+  startMenu.style.display = "none";
+  navBar.style.display = "none";
+  canvas.style.display = "block";
+  startGame();
+});
+
+startLevelTwo.addEventListener("click", () => {
+  startMenu.style.display = "none";
+  navBar.style.display = "none";
+  canvas.style.display = "block";
+  startGame();
+});
+
+startLevelThree.addEventListener("click", () => {
+  startMenu.style.display = "none";
+  navBar.style.display = "none";
+  canvas.style.display = "block";
+  startGame();
+});
+
+backgroundImage.addEventListener("load", () => {
   background = new Background(backgroundImage);
 });
