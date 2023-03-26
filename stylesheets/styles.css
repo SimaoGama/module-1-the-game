@@ -8,16 +8,27 @@
 nav {
   background-color: hsl(192, 68%, 38%);
   position: fixed;
-  width: 100%;
   top: 0;
   left: 0;
-  padding: 1em;
+  width: 100%;
+
+  /* padding: 1em;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   border-radius: 10em;
   box-shadow: inset 0 0 0.2em 0 var(--clr-orange-neon),
-    0 0 0.9em var(--clr-orange-neon);
+    0 0 0.9em var(--clr-orange-neon); */
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.main-page {
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 body {
@@ -63,7 +74,7 @@ p {
 
 #buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 2rem;
 }
 
@@ -103,6 +114,104 @@ p {
   /* box-shadow: 0 0 0.5em 0 currentColor; */
 }
 
-/* canvas {
-  border: 2px solid ;
-} */
+@media (max-width: 1600px) {
+  canvas {
+    max-height: 100vh;
+    max-width: 100vw;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    margin: 0;
+    display: flex;
+    background: var(--clr-bg);
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  button {
+    display: flex;
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    margin: 1rem;
+    border-radius: 0.25em;
+    box-shadow: inset 0 0 0.2em 0 var(--clr-orange-neon),
+      0 0 0.9em var(--clr-orange-neon);
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  h1 {
+    font-size: 5rem;
+    color: rgb(0, 174, 255);
+    text-shadow: 0 0 0.105em var(--clr-orange-neon);
+    margin: 0;
+  }
+
+  p {
+    font-size: 1rem;
+    color: rgb(0, 174, 255);
+    text-shadow: 0 0 0.105em black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  .button {
+    background-color: var(--clr-bg);
+    color: var(--clr-orange-neon);
+    border: var(--clr-orange-neon) 0.125em solid;
+    font-size: 3rem;
+    text-decoration: none;
+    padding: 0.25 1em;
+    border-radius: 0.25em;
+    text-shadow: 0 0 0.125em hsla(0, 0%, 100% / 0.3), 0 0 0.45em currentColor;
+    box-shadow: inset 0 0 0.5em 0 currentColor, 0 0 0.5em currentColor;
+    position: relative;
+  }
+
+  .button::before {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    top: 120%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.45);
+    filter: blur(1em);
+    opacity: 0.7;
+  }
+
+  .button:hover,
+  .button:focus {
+    background: var(--clr-orange-neon);
+    color: var(--clr-bg);
+    text-shadow: none;
+    cursor: pointer;
+    /* box-shadow: 0 0 0.5em 0 currentColor; */
+  }
+
+  canvas {
+    max-height: 100vh;
+    max-width: 100vw;
+  }
+}
+
+@media screen and (orientation: portrait) {
+}
