@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function animateLevelOne() {
   game.clear();
@@ -7,11 +7,11 @@ function animateLevelOne() {
 
   game.init(player, obstacles);
 
-  obstacles.forEach((obstacle) => {
+  obstacles.forEach(obstacle => {
     obstacle.draw();
   });
 
-  platforms.forEach((platform) => {
+  platforms.forEach(platform => {
     platform.activate(player);
   });
 
@@ -42,10 +42,10 @@ let platforms = [
   new Platform({
     x: 12000,
     y: canvas.height - 90,
-    image: javaScriptBackground,
+    image: javaScriptBackground
   }),
   new Platform({ x: 13000, y: canvas.height - 90, image: htmlBackground }),
-  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground }),
+  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground })
 ];
 
 // let enemies = [
@@ -79,5 +79,5 @@ let obstacles = [
   new GameObjects({ x: 7000, y: 700 }),
   new GameObjects({ x: 7300, y: 0 }),
   new GameObjects({ x: 7750, y: 400 }),
-  new GameObjects({ x: 7900, y: 700 }),
+  new GameObjects({ x: 7900, y: 700 })
 ];

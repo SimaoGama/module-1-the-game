@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 class GameObjects {
-  constructor({ x, y }) {
+  constructor({ x, y, image }) {
     this.position = {
       x,
-      y,
+      y
     };
-    //this.image = image;
+    this.image = image;
     this.height = 50;
     this.width = 50;
     this.currentPositionY = this.position.y;
@@ -27,7 +27,7 @@ class GameObjects {
     return this.position.y + this.height;
   };
 
-  collisionWith = (component) => {
+  collisionWith = component => {
     return !(
       this.bottom() < component.top() ||
       this.top() > component.bottom() ||
@@ -45,8 +45,10 @@ class GameObjects {
   };
 
   draw = () => {
-    ctx.fillStyle = "red";
+    ctx.fillStyle = 'red';
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+    //ctx.drawImage(this.image, this.position.x, this.position.y);
 
     /* this.position.y += this.movement;
 

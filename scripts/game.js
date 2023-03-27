@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 // where game is initialized
 class Game {
   constructor(player, level) {
@@ -19,7 +19,7 @@ class Game {
   // }
 
   collision(player, obstacles) {
-    obstacles.forEach((obstacle) => {
+    obstacles.forEach(obstacle => {
       if (
         player.position.x < obstacle.position.x + obstacle.width &&
         player.position.x + player.width > obstacle.position.x &&
@@ -28,12 +28,13 @@ class Game {
       ) {
         player.speed.y = 0;
         player.gravity = 0;
-        ctx.fillStyle = "red";
-        ctx.font = "150px Helvetica";
+        ctx.fillStyle = 'red';
+        ctx.font = '150px Helvetica';
         ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
 
-        setTimeout(() => {}, "5000");
-        initGame();
+        setTimeout(() => {}, '5000');
+        initLevelOne();
+        initLevelTwo();
       }
     });
   }
@@ -47,39 +48,42 @@ class Game {
   }
 
   checkGameOver = () => {
-    const crashed = this.obstacles.some((obstacle) => {
+    const crashed = this.obstacles.some(obstacle => {
       return this.player.collisionWith(obstacle) ? true : false;
     });
 
     if (crashed) {
-      initGame();
+      initLevelOne();
     }
   };
 
   checkGameWin() {
     if (this.frames > 13000) {
       this.currentTime = this.timer;
-      ctx.fillStyle = "green";
-      ctx.font = "120px Helvetica";
+      ctx.fillStyle = 'green';
+      ctx.font = '120px Helvetica';
       ctx.fillText(`LEVEL CLEARED!`, canvas.width / 2 - 450, canvas.height / 3);
+      stopGame();
       ctx.fillText(
-        `Your Time: ${convertSeconds(this.currentTime)}!`,
+        `Your time: ${(game.timer * 0.01).toFixed(1)}`,
         canvas.width / 2 - 450,
         canvas.height / 2
       );
       this.player.speed.y = -10;
 
       setTimeout(() => {
-        initGame();
-      }, "5000");
+        initLevelTwo();
+      }, '5000');
     } else if (this.player.position.y > canvas.height) {
-      ctx.fillStyle = "red";
-      ctx.font = "150px Helvetica";
+      ctx.fillStyle = 'red';
+      ctx.font = '150px Helvetica';
+      stopGame();
       ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
 
       setTimeout(() => {
-        initGame();
-      }, "1000");
+        initLevelOne();
+        initLevelTwo();
+      }, '1000');
     }
   }
 
