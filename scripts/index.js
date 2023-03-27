@@ -15,6 +15,9 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const backgroundImage = createImage("images/backgrounds/nordic.jpg");
+const backgroundImageLvl2 = createImage("images/backgrounds/BG.png");
+const backgroundImageLvl3 = createImage("images/backgrounds/Moon.png");
+
 const paralaxBackground = createImage("../images/hills.png");
 const platformImage = createImage("./images/platform.png");
 // const gameObject1 = createImage('./images/gameobject1.png');
@@ -31,6 +34,7 @@ const cssBackground = createImage("images/enemies/css-enemy.png");
 // };
 
 displayStatusText = () => {
+  "use strict";
   ctx.fillStyle = "black";
   ctx.font = "20px Helvetica";
   if (game.frames < 0) {
@@ -40,6 +44,8 @@ displayStatusText = () => {
   ctx.fillText(`Level: ${levelOne.name}`, 20, 90);
   ctx.fillText(`Points: ${game.points}`, 20, 140);
   ctx.fillText(`Time: ${(game.timer * 0.01).toFixed(1)}`, 20, 190);
+  ctx.fillText(`Quit Game: Q`, 20, 240);
+
   //ctx.fillText(`Timer: ${convertSeconds(game.timer)}`, 20, 190);
 };
 
@@ -59,12 +65,6 @@ function createImage(source) {
   return image;
 }
 
-function convertSeconds(seconds) {
-  let min = Math.floor(seconds / 60);
-  let sec = seconds % 60;
-  return `${min} : ${sec}`;
-}
-
 //game assets
 let player = new Player("blue");
 let levelOne = new LevelOne(player);
@@ -75,53 +75,6 @@ let frames = game.frames;
 let floor = new Platform({ x: 0, y: canvas.height - 80, image: platformImage });
 
 let hills = new GenericBackground({ x: 0, y: 500, image: paralaxBackground });
-
-//lvl 1 platforms
-let platforms = [
-  new Platform({ x: -500, y: canvas.height - 80, image: platformImage }),
-  new Platform({ x: 1400, y: 500, image: htmlBackground }),
-  new Platform({ x: 2400, y: 300, image: javaScriptBackground }),
-  new Platform({ x: 3400, y: 500, image: htmlBackground }),
-  new Platform({ x: 4500, y: 600, image: cssBackground }),
-  new Platform({ x: 5300, y: 500, image: javaScriptBackground }),
-  new Platform({ x: 6500, y: 400, image: htmlBackground }),
-  new Platform({ x: 7900, y: 400, image: javaScriptBackground }),
-  new Platform({ x: 9000, y: canvas.height - 90, image: cssBackground }),
-  new Platform({ x: 9500, y: canvas.height - 90, image: javaScriptBackground }),
-  new Platform({ x: 10000, y: canvas.height - 90, image: htmlBackground }),
-  new Platform({ x: 11000, y: canvas.height - 90, image: cssBackground }),
-  new Platform({
-    x: 12000,
-    y: canvas.height - 90,
-    image: javaScriptBackground,
-  }),
-  new Platform({ x: 13000, y: canvas.height - 90, image: htmlBackground }),
-  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground }),
-];
-
-// let enemies = [
-//   new Enemy({ x: 100, y: 0 }),
-//   new Enemy({ x: 200, y: 0 }),
-//   new Enemy({ x: 300, y: 0 })
-// ];
-
-let obstacles = [
-  new GameObjects({ x: 800, y: 300 }),
-  new GameObjects({ x: 1000, y: 600 }),
-  new GameObjects({ x: 1200, y: 0 }),
-  new GameObjects({ x: 2000, y: 0 }),
-  new GameObjects({ x: 2100, y: 600 }),
-  new GameObjects({ x: 2800, y: 700 }),
-  new GameObjects({ x: 3200, y: 100 }),
-  new GameObjects({ x: 3600, y: 1000 }),
-  new GameObjects({ x: 3900, y: 600 }),
-  new GameObjects({ x: 4200, y: 700 }),
-  new GameObjects({ x: 4500, y: 400 }),
-  new GameObjects({ x: 4750, y: 300 }),
-  new GameObjects({ x: 4900, y: 0 }),
-  new GameObjects({ x: 5000, y: 400 }),
-  new GameObjects({ x: 5200, y: 700 }),
-];
 
 const playerMovement = () => {
   if (keys.right.pressed && player.position.x < canvas.width / 2) {
@@ -202,6 +155,13 @@ function startGame() {
 //   displayStatusText();
 // }
 // event listeners
+
+function mainScreen() {
+  startMenu.style.display = "block";
+  navBar.style.display = "flex";
+  canvas.style.display = "none";
+}
+
 window.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "d":
@@ -217,6 +177,8 @@ window.addEventListener("keydown", (event) => {
     case " ":
       player.speed.y -= 25;
       break;
+    case "q":
+      mainScreen();
   }
 });
 
@@ -231,7 +193,6 @@ window.addEventListener("keyup", (event) => {
       player.speed.x = 0;
       keys.left.pressed = false;
       player.currentSprite = player.sprites.standing.left;
-
       break;
   }
 });
@@ -247,7 +208,7 @@ startLevelTwo.addEventListener("click", () => {
   startMenu.style.display = "none";
   navBar.style.display = "none";
   canvas.style.display = "block";
-  startGame();
+  animateLevelTwo();
 });
 
 startLevelThree.addEventListener("click", () => {

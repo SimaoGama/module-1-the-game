@@ -1,3 +1,4 @@
+"use strict";
 class Platform {
   constructor({ x, y, image }) {
     this.position = {

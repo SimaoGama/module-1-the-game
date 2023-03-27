@@ -1,12 +1,14 @@
+"use strict";
+
 class Levels {
   constructor(player, image) {
     this.player = player;
     this.frames = 0;
     this.image = image;
-    this.name = ' ';
+    this.name = " ";
   }
 
-  drawBackground = image => {
+  drawBackground = (image) => {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
   };
 
@@ -22,7 +24,7 @@ class Levels {
 
       if (keys.right.pressed) {
         this.frames += 5;
-        platforms.forEach(platform => {
+        platforms.forEach((platform) => {
           platform.position.x -= 5;
         });
         // gameObjects.forEach(platform => {
@@ -32,7 +34,7 @@ class Levels {
         floor2.position.x -= 5;
       } else if (keys.left.pressed) {
         this.frames -= 5;
-        platforms.forEach(platform => {
+        platforms.forEach((platform) => {
           platform.position.x += 5;
         });
         // gameObjects.forEach(platform => {
@@ -52,7 +54,7 @@ class LevelOne extends Levels {
     this.player = player;
     this.frames = frames;
     this.image = backgroundImage;
-    this.name = '1';
+    this.name = "1";
   }
 
   // lvlOnePlatforms(player) {

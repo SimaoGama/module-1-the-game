@@ -1,3 +1,4 @@
+"use strict";
 class Background {
   constructor(levelImage) {
     this.image = levelImage;
@@ -12,7 +13,7 @@ class GenericBackground {
   constructor({ x, y, image }) {
     this.position = {
       x,
-      y
+      y,
     };
     this.image = image;
     this.height = this.image.height;

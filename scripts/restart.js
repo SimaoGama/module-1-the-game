@@ -1,7 +1,7 @@
 // starting positions for level 1
-
+"use strict";
 function initGame() {
-  player = new Player('blue');
+  player = new Player("blue");
   levelOne = new LevelOne(player);
   game = new Game(player, levelOne);
   frames = game.frames;
@@ -25,17 +25,17 @@ function initGame() {
     new Platform({
       x: 9500,
       y: canvas.height - 90,
-      image: javaScriptBackground
+      image: javaScriptBackground,
     }),
     new Platform({ x: 10000, y: canvas.height - 90, image: htmlBackground }),
     new Platform({ x: 11000, y: canvas.height - 90, image: cssBackground }),
     new Platform({
       x: 12000,
       y: canvas.height - 90,
-      image: javaScriptBackground
+      image: javaScriptBackground,
     }),
     new Platform({ x: 13000, y: canvas.height - 90, image: htmlBackground }),
-    new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground })
+    new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground }),
   ];
 
   // let enemies = [
@@ -59,6 +59,6 @@ function initGame() {
     new GameObjects({ x: 4750, y: 300 }),
     new GameObjects({ x: 4900, y: 0 }),
     new GameObjects({ x: 5000, y: 400 }),
-    new GameObjects({ x: 5200, y: 700 })
+    new GameObjects({ x: 5200, y: 700 }),
   ];
 }
