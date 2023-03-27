@@ -20,7 +20,7 @@ function animateLevelTwo() {
   floor.activate(player);
 
   game.timer += 1;
-  requestAnimationFrame(animateLevelTwo);
+  // requestAnimationFrame(animateLevelTwo);
   displayStatusText();
 }
 

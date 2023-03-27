@@ -151,9 +151,15 @@ const playerMovement = () => {
 
 //run game
 function startGame() {
-  intervalId = setInterval(() => {
-    animateLevelOne();
-  }, 15);
+  if (levelOneActive) {
+    intervalId = setInterval(() => {
+      animateLevelOne();
+    }, 15);
+  } else {
+    intervalId = setInterval(() => {
+      animateLevelTwo();
+    }, 13);
+  }
 }
 
 // function animateLevelOne() {
@@ -240,7 +246,7 @@ startLevelTwo.addEventListener("click", () => {
   canvas.style.display = "block";
   levelOneActive = false;
   levelTwoActive = true;
-  animateLevelTwo();
+  startGame();
 });
 
 startLevelThree.addEventListener("click", () => {
