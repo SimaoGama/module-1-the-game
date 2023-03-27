@@ -1,5 +1,7 @@
 console.log('JS loaded');
 
+let intervalId;
+
 // game area
 
 // DOM + Images
@@ -51,7 +53,7 @@ displayStatusText = () => {
 };
 
 function stopGame() {
-  cancelAnimationFrame(animateLevelOne);
+  clearInterval(intervalId);
 }
 
 //gravity
@@ -144,9 +146,10 @@ const playerMovement = () => {
 };
 
 //run game
-
 function startGame() {
-  animateLevelOne();
+  intervalId = setInterval(() => {
+    animateLevelOne();
+  }, 10);
 }
 
 // function animateLevelOne() {
@@ -183,6 +186,7 @@ function mainScreen() {
 }
 
 window.addEventListener('keydown', event => {
+  event.preventDefault();
   switch (event.key) {
     case 'd':
       player.speed.x += 5;

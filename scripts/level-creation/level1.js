@@ -21,7 +21,7 @@ function animateLevelOne() {
   floor.activate(player);
 
   game.timer += 1;
-  requestAnimationFrame(animateLevelOne);
+  /* requestAnimationFrame(animateLevelOne); */
   displayStatusText();
 }
 
