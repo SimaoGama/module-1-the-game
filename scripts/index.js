@@ -1,33 +1,33 @@
-console.log('JS loaded');
+console.log("JS loaded");
 
 let intervalId;
 
 // game area
 
 // DOM + Images
-const canvas = document.getElementById('ironhacker');
-const ctx = canvas.getContext('2d');
-const startMenu = document.getElementById('start-screen');
-const navBar = document.querySelector('nav');
-const startLevelOne = document.getElementById('level-one');
-const startLevelTwo = document.getElementById('level-two');
-const startLevelThree = document.getElementById('level-three');
+const canvas = document.getElementById("ironhacker");
+const ctx = canvas.getContext("2d");
+const startMenu = document.getElementById("start-screen");
+const navBar = document.querySelector("nav");
+const startLevelOne = document.getElementById("level-one");
+const startLevelTwo = document.getElementById("level-two");
+const startLevelThree = document.getElementById("level-three");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const backgroundImage = createImage('images/backgrounds/nordic-min.jpg');
-const backgroundImageLvl2 = createImage('images/backgrounds/BG.png');
-const backgroundImageLvl3 = createImage('images/backgrounds/Moon.png');
+const backgroundImage = createImage("images/backgrounds/nordic-min.jpg");
+const backgroundImageLvl2 = createImage("images/backgrounds/BG.png");
+const backgroundImageLvl3 = createImage("images/backgrounds/Moon.png");
 
-const paralaxBackground = createImage('../images/hills.png');
-const platformImage = createImage('./images/platform.png');
+const paralaxBackground = createImage("../images/hills.png");
+const platformImage = createImage("./images/platform.png");
 // const gameObject1 = createImage('./images/gameobject1.png');
-const javaScriptBackground = createImage('images/enemies/js-enemy.png');
-const htmlBackground = createImage('images/enemies/html-enemy.png');
-const cssBackground = createImage('images/enemies/css-enemy.png');
-const cLogo = createImage('images/enemies/C-logo.png');
-const cSharpLogo = createImage('images/enemies/C-Sharp-logo.png');
+const javaScriptBackground = createImage("images/enemies/js-enemy.png");
+const htmlBackground = createImage("images/enemies/html-enemy.png");
+const cssBackground = createImage("images/enemies/css-enemy.png");
+const cLogo = createImage("images/enemies/C-logo.png");
+const cSharpLogo = createImage("images/enemies/C-Sharp-logo.png");
 
 //const mossImage = createImage("images/download.png");
 
@@ -37,10 +37,13 @@ const cSharpLogo = createImage('images/enemies/C-Sharp-logo.png');
 //   elementId.style.display = canvasDisplay;
 // };
 
+let levelOneActive = false;
+let levelTwoActive = false;
+
 displayStatusText = () => {
-  'use strict';
-  ctx.fillStyle = 'black';
-  ctx.font = '20px Helvetica';
+  "use strict";
+  ctx.fillStyle = "black";
+  ctx.font = "20px Helvetica";
   if (game.frames < 0) {
     ctx.fillText(`Frames: 0`, 20, 40);
   } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
@@ -74,7 +77,7 @@ function createImage(source) {
 }
 
 //game assets
-let player = new Player('blue');
+let player = new Player("blue");
 let levelOne = new LevelOne(player);
 // let levelTwo = new levelTwo(player);
 // let levelThree = new levelThree(player);
@@ -105,16 +108,16 @@ const playerMovement = () => {
       // player.increaseIndex();
       console.log(game.frames);
 
-      platforms.forEach(platform => {
+      platforms.forEach((platform) => {
         platform.position.x -= 5;
       });
-      obstacles.forEach(obstacle => {
+      obstacles.forEach((obstacle) => {
         obstacle.position.x -= 5;
       });
-      platformsLvl2.forEach(platform => {
+      platformsLvl2.forEach((platform) => {
         platform.position.x -= 5;
       });
-      obstaclesLvl2.forEach(obstacle => {
+      obstaclesLvl2.forEach((obstacle) => {
         obstacle.position.x -= 5;
       });
 
@@ -123,16 +126,16 @@ const playerMovement = () => {
       //floor2.position.x -= 5;
     } else if (keys.left.pressed) {
       // player.decreaseIndex();
-      platforms.forEach(platform => {
+      platforms.forEach((platform) => {
         platform.position.x += 5;
       });
-      obstacles.forEach(obstacle => {
+      obstacles.forEach((obstacle) => {
         obstacle.position.x += 5;
       });
-      platformsLvl2.forEach(platform => {
+      platformsLvl2.forEach((platform) => {
         platform.position.x += 5;
       });
-      obstaclesLvl2.forEach(obstacle => {
+      obstaclesLvl2.forEach((obstacle) => {
         obstacle.position.x += 5;
       });
       // gameObjects.forEach(platform => {
@@ -150,7 +153,7 @@ const playerMovement = () => {
 function startGame() {
   intervalId = setInterval(() => {
     animateLevelOne();
-  }, 10);
+  }, 15);
 }
 
 // function animateLevelOne() {
@@ -180,41 +183,41 @@ function startGame() {
 // event listeners
 
 function mainScreen() {
-  startMenu.style.display = 'block';
-  navBar.style.display = 'flex';
-  canvas.style.display = 'none';
+  startMenu.style.display = "block";
+  navBar.style.display = "flex";
+  canvas.style.display = "none";
   stopGame();
 }
 
-window.addEventListener('keydown', event => {
+window.addEventListener("keydown", (event) => {
   event.preventDefault();
   switch (event.key) {
-    case 'd':
+    case "d":
       player.speed.x += 5;
       keys.right.pressed = true;
       player.currentSprite = player.sprites.walking.right;
       break;
-    case 'a':
+    case "a":
       player.speed.x -= 5;
       keys.left.pressed = true;
       player.currentSprite = player.sprites.walking.left;
       break;
-    case ' ':
+    case " ":
       player.speed.y -= 25;
       break;
-    case 'q':
+    case "q":
       mainScreen();
   }
 });
 
-window.addEventListener('keyup', event => {
+window.addEventListener("keyup", (event) => {
   switch (event.key) {
-    case 'd':
+    case "d":
       player.speed.x = 0;
       keys.right.pressed = false;
       player.currentSprite = player.sprites.standing.right;
       break;
-    case 'a':
+    case "a":
       player.speed.x = 0;
       keys.left.pressed = false;
       player.currentSprite = player.sprites.standing.left;
@@ -222,27 +225,31 @@ window.addEventListener('keyup', event => {
   }
 });
 
-startLevelOne.addEventListener('click', () => {
-  startMenu.style.display = 'none';
-  navBar.style.display = 'none';
-  canvas.style.display = 'block';
+startLevelOne.addEventListener("click", () => {
+  startMenu.style.display = "none";
+  navBar.style.display = "none";
+  canvas.style.display = "block";
+  levelOneActive = true;
+  levelTwoActive = false;
   startGame();
 });
 
-startLevelTwo.addEventListener('click', () => {
-  startMenu.style.display = 'none';
-  navBar.style.display = 'none';
-  canvas.style.display = 'block';
+startLevelTwo.addEventListener("click", () => {
+  startMenu.style.display = "none";
+  navBar.style.display = "none";
+  canvas.style.display = "block";
+  levelOneActive = false;
+  levelTwoActive = true;
   animateLevelTwo();
 });
 
-startLevelThree.addEventListener('click', () => {
-  startMenu.style.display = 'none';
-  navBar.style.display = 'none';
-  canvas.style.display = 'block';
+startLevelThree.addEventListener("click", () => {
+  startMenu.style.display = "none";
+  navBar.style.display = "none";
+  canvas.style.display = "block";
   startGame();
 });
 
-backgroundImage.addEventListener('load', () => {
+backgroundImage.addEventListener("load", () => {
   background = new Background(backgroundImage);
 });

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 function animateLevelTwo() {
   game.clear();
   ctx.drawImage(backgroundImageLvl3, 0, 0, canvas.width, canvas.height);
@@ -6,11 +6,11 @@ function animateLevelTwo() {
 
   game.init(player, obstaclesLvl2);
 
-  obstaclesLvl2.forEach(obstacle => {
+  obstaclesLvl2.forEach((obstacle) => {
     obstacle.draw();
   });
 
-  platformsLvl2.forEach(platform => {
+  platformsLvl2.forEach((platform) => {
     platform.activate(player);
   });
 
@@ -41,10 +41,10 @@ let platformsLvl2 = [
   new Platform({
     x: 12000,
     y: canvas.height - 90,
-    image: javaScriptBackground
+    image: javaScriptBackground,
   }),
   new Platform({ x: 13000, y: canvas.height - 90, image: htmlBackground }),
-  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground })
+  new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground }),
 ];
 
 // let enemies = [
@@ -54,34 +54,34 @@ let platformsLvl2 = [
 // ];
 
 let obstaclesLvl2 = [
-  new GameObjects({ x: 600, y: 0 }),
-  new GameObjects({ x: 700, y: 600 }),
-  new GameObjects({ x: 1000, y: 600 }),
-  new GameObjects({ x: 1200, y: 600 }),
-  new GameObjects({ x: 1300, y: 0 }),
-  new GameObjects({ x: 2100, y: 0 }),
-  new GameObjects({ x: 2150, y: 600 }),
-  new GameObjects({ x: 2200, y: 100 }),
-  new GameObjects({ x: 2400, y: 200 }),
-  new GameObjects({ x: 2700, y: 700 }),
-  new GameObjects({ x: 2800, y: 900 }),
-  new GameObjects({ x: 3200, y: 100 }),
-  new GameObjects({ x: 3600, y: 1000 }),
-  new GameObjects({ x: 3900, y: 600 }),
-  new GameObjects({ x: 4200, y: 700 }),
-  new GameObjects({ x: 4500, y: 400 }),
-  new GameObjects({ x: 4750, y: 300 }),
-  new GameObjects({ x: 4900, y: 0 }),
-  new GameObjects({ x: 5000, y: 400 }),
-  new GameObjects({ x: 5200, y: 700 }),
-  new GameObjects({ x: 5600, y: 0 }),
-  new GameObjects({ x: 5800, y: 400 }),
-  new GameObjects({ x: 6000, y: 700 }),
-  new GameObjects({ x: 6300, y: 0 }),
-  new GameObjects({ x: 6750, y: 400 }),
-  new GameObjects({ x: 6900, y: 700 }),
-  new GameObjects({ x: 7000, y: 700 }),
-  new GameObjects({ x: 7300, y: 0 }),
-  new GameObjects({ x: 7750, y: 400 }),
-  new GameObjects({ x: 7900, y: 700 })
+  new GameObjects({ x: 600, y: 0, image: cSharpLogo }),
+  new GameObjects({ x: 700, y: 600, image: cSharpLogo }),
+  new GameObjects({ x: 1000, y: 600, image: cSharpLogo }),
+  new GameObjects({ x: 1200, y: 600, image: cSharpLogo }),
+  new GameObjects({ x: 1300, y: 0, image: cSharpLogo }),
+  new GameObjects({ x: 2100, y: 0, image: cSharpLogo }),
+  new GameObjects({ x: 2150, y: 600, image: cSharpLogo }),
+  new GameObjects({ x: 2200, y: 100, image: cSharpLogo }),
+  new GameObjects({ x: 2400, y: 200, image: cSharpLogo }),
+  new GameObjects({ x: 2700, y: 700, image: cSharpLogo }),
+  new GameObjects({ x: 2800, y: 900, image: cSharpLogo }),
+  new GameObjects({ x: 3200, y: 100, image: cSharpLogo }),
+  new GameObjects({ x: 3600, y: 1000, image: cSharpLogo }),
+  new GameObjects({ x: 3900, y: 600, image: cSharpLogo }),
+  new GameObjects({ x: 4200, y: 700, image: cSharpLogo }),
+  new GameObjects({ x: 4500, y: 400, image: cSharpLogo }),
+  new GameObjects({ x: 4750, y: 300, image: cSharpLogo }),
+  new GameObjects({ x: 4900, y: 0, image: cSharpLogo }),
+  new GameObjects({ x: 5000, y: 400, image: cSharpLogo }),
+  new GameObjects({ x: 5200, y: 700, image: cSharpLogo }),
+  new GameObjects({ x: 5600, y: 0, image: cSharpLogo }),
+  new GameObjects({ x: 5800, y: 400, image: cSharpLogo }),
+  new GameObjects({ x: 6000, y: 700, image: cSharpLogo }),
+  new GameObjects({ x: 6300, y: 0, image: cSharpLogo }),
+  new GameObjects({ x: 6750, y: 400, image: cSharpLogo }),
+  new GameObjects({ x: 6900, y: 700, image: cSharpLogo }),
+  new GameObjects({ x: 7000, y: 700, image: cSharpLogo }),
+  new GameObjects({ x: 7300, y: 0, image: cSharpLogo }),
+  new GameObjects({ x: 7750, y: 400, image: cSharpLogo }),
+  new GameObjects({ x: 7900, y: 700, image: cSharpLogo }),
 ];
