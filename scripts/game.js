@@ -77,12 +77,11 @@ class Game {
     } else if (this.player.position.y > canvas.height) {
       ctx.fillStyle = 'red';
       ctx.font = '150px Helvetica';
-      stopGame();
+
       ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
 
       setTimeout(() => {
         initLevelOne();
-        initLevelTwo();
       }, '1000');
     }
   }

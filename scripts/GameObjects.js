@@ -45,10 +45,16 @@ class GameObjects {
   };
 
   draw = () => {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // ctx.fillStyle = 'red';
+    // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-    //ctx.drawImage(this.image, this.position.x, this.position.y);
+    ctx.drawImage(
+      this.image,
+      this.position.x,
+      this.position.y,
+      this.image.width,
+      this.image.height
+    );
 
     /* this.position.y += this.movement;
 

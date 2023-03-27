@@ -16,7 +16,7 @@ const startLevelThree = document.getElementById('level-three');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const backgroundImage = createImage('images/backgrounds/nordic.jpg');
+const backgroundImage = createImage('images/backgrounds/nordic-min.jpg');
 const backgroundImageLvl2 = createImage('images/backgrounds/BG.png');
 const backgroundImageLvl3 = createImage('images/backgrounds/Moon.png');
 
@@ -27,6 +27,7 @@ const javaScriptBackground = createImage('images/enemies/js-enemy.png');
 const htmlBackground = createImage('images/enemies/html-enemy.png');
 const cssBackground = createImage('images/enemies/css-enemy.png');
 const cLogo = createImage('images/enemies/C-logo.png');
+const cSharpLogo = createImage('images/enemies/C-Sharp-logo.png');
 
 //const mossImage = createImage("images/download.png");
 

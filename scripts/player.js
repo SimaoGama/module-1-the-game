@@ -18,8 +18,8 @@ class Player {
       x: 0,
       y: 1
     };
-    this.width = 150;
-    this.height = 160;
+    this.width = 100;
+    this.height = 110;
 
     this.gravity = 0.8;
     this.index = 1;
@@ -27,12 +27,12 @@ class Player {
     this.playerFrames = 0;
     this.sprites = {
       standing: {
-        right: createImage('images/player/Player_Stand_Right.png'),
-        left: createImage('images/player/Player_Stand_Left.png')
+        right: createImage('images/player/Player_Stand_Right-min.png'),
+        left: createImage('images/player/Player_Stand_Left-min.png')
       },
       walking: {
-        right: createImage('images/player/Player_Walking_Right.png'),
-        left: createImage('images/player/Player_Walking_Left.png')
+        right: createImage('images/player/Player_Walking_Right-min.png'),
+        left: createImage('images/player/Player_Walking_Left-min.png')
       }
     };
 
