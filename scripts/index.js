@@ -226,7 +226,7 @@ window.addEventListener("keydown", (event) => {
       player.speed.y -= 25;
       break;
     case "r":
-      initLevelOne();
+      levelOneActive ? initLevelOne() : initLevelTwo();
       break;
     case "q":
       mainScreen();
