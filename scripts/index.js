@@ -224,7 +224,7 @@ window.addEventListener("keydown", (event) => {
       player.currentSprite = player.sprites.walking.left;
       break;
     case " ":
-      player.speed.y -= 10;
+      player.speed.y -= 20;
       break;
     case "r":
       levelOneActive ? initLevelOne() : initLevelTwo();

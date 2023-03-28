@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 class GameObjects {
   constructor({ x, y, image }) {
     this.position = {
       x,
-      y
+      y,
     };
     this.image = image;
     this.height = 50;
@@ -27,7 +27,7 @@ class GameObjects {
     return this.position.y + this.height;
   };
 
-  collisionWith = component => {
+  collisionWith = (component) => {
     return !(
       this.bottom() < component.top() ||
       this.top() > component.bottom() ||
@@ -83,4 +83,41 @@ class GameObjects {
   };
 
   activate() {}
+}
+
+class flyObjects {
+  constructor({ x, y, image }) {
+    this.position = {
+      x,
+      y,
+    };
+    this.image = image;
+    this.height = 50;
+    this.width = 50;
+    this.currentPositionY = this.position.y;
+    this.startingPositionY = this.position.y;
+    this.speed = 5;
+  }
+
+  draw = () => {
+    ctx.fillStyle = "red";
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+    // ctx.drawImage(
+    //   this.image,
+    //   this.position.x,
+    //   this.position.y,
+    //   this.image.width,
+    //   this.image.height
+    // );
+
+    this.position.y += this.speed;
+
+    if (
+      this.position.y + this.speed > canvas.height ||
+      this.position.y + this.speed < 0
+    ) {
+      this.speed *= -1;
+    }
+  };
 }
