@@ -1,5 +1,14 @@
 "use strict";
 // where game is initialized
+class Records {
+  constructor() {
+    this.records = [];
+    this.bestTime = 0;
+  }
+}
+
+let record = new Records();
+
 class Game {
   constructor(player, level) {
     this.level = level;
@@ -8,7 +17,7 @@ class Game {
     this.points = 0;
     this.timer = 0;
     this.currentTime = 0;
-    this.isRunning = true;
+    // this.bestTime = 0;
   }
 
   // drawObstacles() {
@@ -48,6 +57,17 @@ class Game {
     timer++;
   }
 
+  showBestTime() {
+    this.currentTime = (this.timer * 0.01).toFixed(1);
+
+    if (record.bestTime === 0) {
+      record.bestTime = this.currentTime;
+    } else if (this.currentTime < record.bestTime) {
+      record.bestTime = this.currentTime;
+    }
+    console.log(record.bestTime);
+  }
+
   checkGameWin() {
     if (levelOneActive) {
       if (this.frames > 9200) {
@@ -59,6 +79,7 @@ class Game {
           canvas.width / 2 - 450,
           canvas.height / 3
         );
+        this.showBestTime();
         stopGame();
 
         ctx.fillText(
@@ -77,7 +98,7 @@ class Game {
         ctx.font = "150px Helvetica";
 
         ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
-
+        this.showBestTime();
         setTimeout(() => {
           initLevelOne();
         }, "1000");

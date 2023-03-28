@@ -48,6 +48,8 @@ displayStatusText = () => {
   "use strict";
   ctx.fillStyle = "black";
   ctx.font = "20px Helvetica";
+  ctx.fillText(`Best Time: ${record.bestTime}`, 180, 40);
+
   if (game.frames < 0) {
     ctx.fillText(`Frames: 0`, 20, 40);
   } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
@@ -122,7 +124,6 @@ const playerMovement = () => {
     if (keys.right.pressed) {
       game.frames += 5;
       // player.increaseIndex();
-      console.log(game.frames);
 
       platforms.forEach((platform) => {
         platform.position.x -= 5;
