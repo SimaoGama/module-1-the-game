@@ -37,6 +37,15 @@ class Platform {
     }
   }
 
+  collisionSide(player) {
+    if (
+      player.position.x + player.width >= this.position.x &&
+      player.position.x <= this.position.x + this.width
+    ) {
+      player.speed.x = 0;
+    }
+  }
+
   activate(player) {
     this.draw();
     this.collision(player);
@@ -64,8 +73,6 @@ class PlatformLogo extends Platform {
       player.position.x + player.width >= this.position.x &&
       player.position.x <= this.position.x + this.width
     ) {
-      game.points += 1;
-
       player.speed.y = -15;
     }
   }

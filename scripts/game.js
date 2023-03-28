@@ -50,7 +50,7 @@ class Game {
 
   checkGameWin() {
     if (levelOneActive) {
-      if (this.frames > 10000) {
+      if (this.frames > 9200) {
         this.currentTime = this.timer;
         ctx.fillStyle = "green";
         ctx.font = "120px Helvetica";
@@ -120,9 +120,9 @@ class Game {
     //ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // background should come from eleve
     //this.level.start(this.player);
     //requestAnimationFrame(this.init);
+    this.checkGameWin();
     player.update();
     playerMovement();
     this.collision(player, obstacles);
-    this.checkGameWin();
   }
 }

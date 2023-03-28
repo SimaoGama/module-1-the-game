@@ -57,7 +57,7 @@ let platformsLvl2 = [
 
 let obstaclesLvl2 = [
   new GameObjects({ x: 600, y: 0, image: cSharpLogo }),
-  new GameObjects({ x: 700, y: 600, image: cSharpLogo }),
+  new GameObjects({ x: 700, y: 600, image: nodeLogo }),
   new GameObjects({ x: 1000, y: 600, image: cSharpLogo }),
   new GameObjects({ x: 1200, y: 600, image: cSharpLogo }),
   new GameObjects({ x: 1300, y: 0, image: cSharpLogo }),

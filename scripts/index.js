@@ -28,6 +28,8 @@ const htmlBackground = createImage("images/enemies/html-enemy.png");
 const cssBackground = createImage("images/enemies/css-enemy.png");
 const cLogo = createImage("images/enemies/C-logo.png");
 const cSharpLogo = createImage("images/enemies/C-Sharp-logo.png");
+const reactLogo = createImage("images/enemies/react.png");
+const nodeLogo = createImage("images/enemies/node.png");
 
 const platformImage = createImage("./images/platform.png");
 
@@ -273,7 +275,9 @@ startLevelThree.addEventListener("click", () => {
   startMenu.style.display = "none";
   navBar.style.display = "none";
   canvas.style.display = "block";
-  startGame();
+  alert("Please buy the DLC. Coming soon™");
+  alert("PREORDER NOW! :D");
+  mainScreen();
 });
 
 backgroundImage.addEventListener("load", () => {

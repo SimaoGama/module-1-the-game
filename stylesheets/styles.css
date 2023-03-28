@@ -6,20 +6,68 @@
 }
 
 nav {
-  background-color: hsl(192, 68%, 38%);
+  font-size: 1.5em;
   position: fixed;
+  box-sizing: border-box;
   top: 0;
   left: 0;
   width: 100%;
-
-  padding: 1em;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  border-radius: 10em;
   box-shadow: inset 0 0 0.2em 0 var(--clr-orange-neon),
     0 0 0.9em var(--clr-orange-neon);
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+}
+
+.navbar-links ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-links li {
+  list-style: none;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  padding: 1rem;
+  color: white;
+  display: block;
+}
+
+.navbar-links li:hover {
+  background-color: hsla(192, 72%, 39%, 0.735);
+}
+
+.toggle-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* NAVBAR END */
 
 .flex {
   display: flex;
@@ -54,6 +102,12 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+.navbar {
+  font-size: 1.3rem;
+  color: rgb(0, 174, 255);
+  text-shadow: 0 0 0.105em var(--clr-orange-neon);
 }
 
 h1 {
@@ -122,6 +176,37 @@ p {
 }
 
 @media (max-width: 767px) {
+  .toggle-button {
+    display: flex;
+  }
+
+  .navbar-links {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar-links ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-links {
+    text-align: center;
+  }
+
+  .navbar-links ul a {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
   body {
     margin: 0;
     display: flex;
@@ -148,7 +233,9 @@ p {
   }
 
   h1 {
-    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
     color: rgb(0, 174, 255);
     text-shadow: 0 0 0.105em var(--clr-orange-neon);
     margin: 0;
