@@ -2,7 +2,10 @@
 // where game is initialized
 class Records {
   constructor() {
-    this.records = [];
+    this.records = {
+      name: "",
+      time: [],
+    };
     this.bestTime = 0;
   }
 }
@@ -62,10 +65,12 @@ class Game {
 
     if (record.bestTime === 0) {
       record.bestTime = this.currentTime;
+      record.records.time.push(record.bestTime);
     } else if (this.currentTime < record.bestTime) {
       record.bestTime = this.currentTime;
+      record.records.time.push(record.bestTime);
     }
-    console.log(record.bestTime);
+    console.log(record.records.time);
   }
 
   checkGameWin() {
@@ -98,7 +103,7 @@ class Game {
         ctx.font = "150px Helvetica";
 
         ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
-        this.showBestTime();
+        // this.showBestTime();
         setTimeout(() => {
           initLevelOne();
         }, "1000");

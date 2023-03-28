@@ -48,18 +48,19 @@ displayStatusText = () => {
   "use strict";
   ctx.fillStyle = "black";
   ctx.font = "20px Helvetica";
-  ctx.fillText(`Best Time: ${record.bestTime}`, 180, 40);
-
-  if (game.frames < 0) {
-    ctx.fillText(`Frames: 0`, 20, 40);
-  } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
+  ctx.fillText(`Best Time: ${record.bestTime}`, 20, 80);
 
   levelOneActive
-    ? ctx.fillText(`Level: 1`, 20, 90)
-    : ctx.fillText(`Level: 2`, 20, 90);
-  ctx.fillText(`Points: ${game.points}`, 20, 140);
-  ctx.fillText(`Time: ${(game.timer * 0.01).toFixed(1)}`, 20, 190);
-  ctx.fillText(`Quit Game: Q`, 20, 240);
+    ? ctx.fillText(`Level: 1`, 20, 40)
+    : ctx.fillText(`Level: 2`, 20, 40);
+
+  // if (game.frames < 0) {
+  //   ctx.fillText(`Frames: 0`, 20, 40);
+  // } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
+
+  // ctx.fillText(`Points: ${game.points}`, 20, 140);
+  ctx.fillText(`Time: ${(game.timer * 0.01).toFixed(1)}`, 100, 40);
+  ctx.fillText(`Quit Game: Q`, 20, 120);
 
   //ctx.fillText(`Timer: ${convertSeconds(game.timer)}`, 20, 190);
 };
