@@ -4,7 +4,7 @@ function animateLevelTwo() {
   ctx.drawImage(backgroundImageLvl3, 0, 0, canvas.width, canvas.height);
   hills.draw();
 
-  player.gravity = 0.3;
+  player.gravity = 1.05;
 
   game.init(player, obstaclesLvl2);
 
