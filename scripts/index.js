@@ -109,8 +109,9 @@ const playerMovement = () => {
     player.speed.x = 5;
   } else if (keys.left.pressed && player.position.x > 400) {
     player.speed.x = -5;
-  } else if (player.position.y <= 0) {
-    player.position.y = 1;
+  } else if (player.position.y + player.height <= 0) {
+    player.position.y = 0 - player.height + 40;
+    player.speed.y = player.gravity;
   } else {
     player.speed.x = 0;
 

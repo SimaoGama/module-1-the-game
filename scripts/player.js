@@ -18,10 +18,10 @@ class Player {
       x: 0,
       y: 1,
     };
-    this.width = 100;
-    this.height = 110;
+    this.width = 90;
+    this.height = 100;
 
-    this.gravity = 0.8;
+    this.gravity = 0.2;
     this.index = 1;
     this.loaded = false;
     this.playerFrames = 0;
