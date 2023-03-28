@@ -109,12 +109,10 @@ const playerMovement = () => {
     player.speed.x = 5;
   } else if (keys.left.pressed && player.position.x > 400) {
     player.speed.x = -5;
+  } else if (player.position.y <= 0) {
+    player.position.y = 1;
   } else {
     player.speed.x = 0;
-
-    // if (player.position.y + player.width > canvas.width) {
-    //   player.speed.y = 0;
-    // }
 
     // background
 
@@ -225,7 +223,7 @@ window.addEventListener("keydown", (event) => {
       player.currentSprite = player.sprites.walking.left;
       break;
     case " ":
-      player.speed.y -= 15;
+      player.speed.y -= 10;
       break;
     case "r":
       levelOneActive ? initLevelOne() : initLevelTwo();
