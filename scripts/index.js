@@ -50,7 +50,9 @@ displayStatusText = () => {
     ctx.fillText(`Frames: 0`, 20, 40);
   } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
 
-  ctx.fillText(`Level: ${levelOne.name}`, 20, 90);
+  levelOneActive
+    ? ctx.fillText(`Level: 1`, 20, 90)
+    : ctx.fillText(`Level: 2`, 20, 90);
   ctx.fillText(`Points: ${game.points}`, 20, 140);
   ctx.fillText(`Time: ${(game.timer * 0.01).toFixed(1)}`, 20, 190);
   ctx.fillText(`Quit Game: Q`, 20, 240);
@@ -223,7 +225,7 @@ window.addEventListener("keydown", (event) => {
       player.currentSprite = player.sprites.walking.left;
       break;
     case " ":
-      player.speed.y -= 25;
+      player.speed.y -= 15;
       break;
     case "r":
       levelOneActive ? initLevelOne() : initLevelTwo();

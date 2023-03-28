@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 const keys = {
   right: {
-    pressed: false
+    pressed: false,
   },
   left: {
-    pressed: false
-  }
+    pressed: false,
+  },
 };
 
 class Player {
   constructor() {
     this.position = {
       x: 100,
-      y: 100
+      y: 100,
     };
     this.speed = {
       x: 0,
-      y: 1
+      y: 1,
     };
     this.width = 100;
     this.height = 110;
@@ -27,13 +27,13 @@ class Player {
     this.playerFrames = 0;
     this.sprites = {
       standing: {
-        right: createImage('images/player/Player_Stand_Right-min.png'),
-        left: createImage('images/player/Player_Stand_Left-min.png')
+        right: createImage("images/player/Player_Stand_Right-min.png"),
+        left: createImage("images/player/Player_Stand_Left-min.png"),
       },
       walking: {
-        right: createImage('images/player/Player_Walking_Right-min.png'),
-        left: createImage('images/player/Player_Walking_Left-min.png')
-      }
+        right: createImage("images/player/Player_Walking_Right-min.png"),
+        left: createImage("images/player/Player_Walking_Left-min.png"),
+      },
     };
 
     this.currentSprite = this.sprites.standing.right;
