@@ -32,9 +32,10 @@ class Game {
         ctx.font = "150px Helvetica";
         ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
 
-        setTimeout(() => {}, "5000");
         initLevelOne();
         initLevelTwo();
+        // setTimeout(() => {}, "5000");
+        // levelOneActive ? initLevelOne() : initLevelTwo();
       }
     });
   }
@@ -47,19 +48,9 @@ class Game {
     timer++;
   }
 
-  checkGameOver = () => {
-    const crashed = this.obstacles.some((obstacle) => {
-      return this.player.collisionWith(obstacle) ? true : false;
-    });
-
-    if (crashed) {
-      initLevelOne();
-    }
-  };
-
   checkGameWin() {
     if (levelOneActive) {
-      if (this.frames > 13000) {
+      if (this.frames > 10000) {
         this.currentTime = this.timer;
         ctx.fillStyle = "green";
         ctx.font = "120px Helvetica";
@@ -69,16 +60,18 @@ class Game {
           canvas.height / 3
         );
         stopGame();
+
         ctx.fillText(
           `Your time: ${(game.timer * 0.01).toFixed(1)}`,
           canvas.width / 2 - 450,
           canvas.height / 2
         );
+
         this.player.speed.y = -10;
 
         setTimeout(() => {
-          initLevelTwo();
-        }, "5000");
+          mainScreen();
+        }, "2000");
       } else if (this.player.position.y > canvas.height) {
         ctx.fillStyle = "red";
         ctx.font = "150px Helvetica";
@@ -90,7 +83,7 @@ class Game {
         }, "1000");
       }
     } else if (levelTwoActive) {
-      if (this.frames > 13000) {
+      if (this.frames > 10000) {
         this.currentTime = this.timer;
         ctx.fillStyle = "green";
         ctx.font = "120px Helvetica";
@@ -106,10 +99,9 @@ class Game {
           canvas.height / 2
         );
         this.player.speed.y = -10;
-
         setTimeout(() => {
-          initLevelTwo();
-        }, "5000");
+          mainScreen();
+        }, "2000");
       } else if (this.player.position.y > canvas.height) {
         ctx.fillStyle = "red";
         ctx.font = "150px Helvetica";
@@ -124,12 +116,11 @@ class Game {
   }
 
   init(player, obstacles) {
-    this.isRunning;
     //this.clear();
     //ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // background should come from eleve
     //this.level.start(this.player);
     //requestAnimationFrame(this.init);
-    this.player.update();
+    player.update();
     playerMovement();
     this.collision(player, obstacles);
     this.checkGameWin();

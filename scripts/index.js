@@ -21,13 +21,15 @@ const backgroundImageLvl2 = createImage("images/backgrounds/BG.png");
 const backgroundImageLvl3 = createImage("images/backgrounds/Moon.png");
 
 const paralaxBackground = createImage("../images/hills.png");
-const platformImage = createImage("./images/platform.png");
+
 // const gameObject1 = createImage('./images/gameobject1.png');
 const javaScriptBackground = createImage("images/enemies/js-enemy.png");
 const htmlBackground = createImage("images/enemies/html-enemy.png");
 const cssBackground = createImage("images/enemies/css-enemy.png");
 const cLogo = createImage("images/enemies/C-logo.png");
 const cSharpLogo = createImage("images/enemies/C-Sharp-logo.png");
+
+const platformImage = createImage("./images/platform.png");
 
 //const mossImage = createImage("images/download.png");
 
@@ -58,6 +60,17 @@ displayStatusText = () => {
 
 function stopGame() {
   clearInterval(intervalId);
+  // if (levelOneActive) {
+  //   animateLevelTwo();
+  //   initLevelTwo();
+  //   levelOneActive = false;
+  //   levelTwoActive = true;
+  // } else {
+  //   animateLevelOne();
+  //   initLevelOne();
+  //   levelOneActive = true;
+  //   levelTwoActive = false;
+  // }
 }
 
 //gravity
@@ -160,6 +173,7 @@ function startGame() {
       animateLevelTwo();
     }, 13);
   }
+  return intervalId;
 }
 
 // function animateLevelOne() {
@@ -192,7 +206,7 @@ function mainScreen() {
   startMenu.style.display = "block";
   navBar.style.display = "flex";
   canvas.style.display = "none";
-  stopGame();
+  clearInterval(intervalId);
 }
 
 window.addEventListener("keydown", (event) => {
@@ -210,6 +224,9 @@ window.addEventListener("keydown", (event) => {
       break;
     case " ":
       player.speed.y -= 25;
+      break;
+    case "r":
+      initLevelOne();
       break;
     case "q":
       mainScreen();
@@ -238,6 +255,7 @@ startLevelOne.addEventListener("click", () => {
   levelOneActive = true;
   levelTwoActive = false;
   startGame();
+  initLevelOne();
 });
 
 startLevelTwo.addEventListener("click", () => {
@@ -247,6 +265,7 @@ startLevelTwo.addEventListener("click", () => {
   levelOneActive = false;
   levelTwoActive = true;
   startGame();
+  initLevelTwo();
 });
 
 startLevelThree.addEventListener("click", () => {
