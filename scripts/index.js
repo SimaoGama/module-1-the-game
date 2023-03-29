@@ -235,6 +235,7 @@ function startGame() {
 // event listeners
 
 function mainScreen() {
+  stopMusic();
   startMenu.style.display = "block";
   navBar.style.display = "flex";
   canvas.style.display = "none";

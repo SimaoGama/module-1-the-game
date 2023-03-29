@@ -61,7 +61,7 @@ let platforms = [
 // ];
 
 let obstacles = [
-  new GameObjects({ x: 700, y: 300, image: reactLogo }),
+  new GameObjects({ x: 700, y: 300, image: cLogo }),
   new GameObjects({ x: 900, y: 600, image: cLogo }),
   new GameObjects({ x: 1200, y: 0, image: cLogo }),
   new GameObjects({ x: 1600, y: 300, image: cLogo }),

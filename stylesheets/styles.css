@@ -235,6 +235,11 @@ p {
 }
 
 @media (max-width: 767px) {
+  .brand-title {
+    font-size: 0.9rem;
+    margin: 0.5rem;
+  }
+
   .toggle-button {
     display: flex;
   }
@@ -323,7 +328,7 @@ p {
     background-color: var(--clr-bg);
     color: var(--clr-orange-neon);
     border: var(--clr-orange-neon) 0.125em solid;
-    font-size: 3rem;
+    font-size: 3em;
     text-decoration: none;
     padding: 0.25 1em;
     border-radius: 0.25em;
