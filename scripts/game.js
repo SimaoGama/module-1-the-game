@@ -1,5 +1,9 @@
 "use strict";
 // where game is initialized
+
+const levelOneOlElement = document.querySelector(".level-one");
+const levelTwoOlElement = document.querySelector(".record-list ol:last-child");
+
 class Records {
   constructor() {
     this.records = {
@@ -11,6 +15,27 @@ class Records {
 }
 
 let record = new Records();
+let recordLvl2 = new Records();
+
+function populateList() {
+  if (record && record.time && record.time.length > 0) {
+    // Populate LEVEL ONE list
+    for (let i = 0; i < record.time.length; i++) {
+      const liElement = document.createElement("li");
+      liElement.innerHTML = record.time[i];
+      levelOneOlElement.appendChild(liElement);
+    }
+
+    // Populate LEVEL TWO list
+    for (let i = 0; i < recordLvl2.time.length; i++) {
+      const liElement = document.createElement("li");
+      liElement.innerHTML = recordLvl2.time[i];
+      levelTwoOlElement.appendChild(liElement);
+    }
+  } else {
+    console.log("The records.time array is empty or undefined.");
+  }
+}
 
 class Game {
   constructor(player, level) {
@@ -61,16 +86,32 @@ class Game {
   }
 
   showBestTime() {
-    this.currentTime = (this.timer * 0.01).toFixed(1);
+    if (levelOneActive) {
+      this.currentTime = (this.timer * 0.01).toFixed(1);
 
-    if (record.bestTime === 0) {
-      record.bestTime = this.currentTime;
-      record.records.time.push(record.bestTime);
-    } else if (this.currentTime < record.bestTime) {
-      record.bestTime = this.currentTime;
-      record.records.time.push(record.bestTime);
+      if (record.bestTime === 0) {
+        record.bestTime = this.currentTime;
+        record.records.time.push(record.bestTime);
+      } else if (this.currentTime < record.bestTime) {
+        record.bestTime = this.currentTime;
+        record.records.time.push(record.bestTime);
+        record.records.time.forEach((time) => {
+          recordListLevelOne.innerText = time;
+        });
+      }
+      console.log(record.records.time);
+    } else if (levelTwoActive) {
+      this.currentTime = (this.timer * 0.01).toFixed(1);
+
+      if (recordLvl2.bestTime === 0) {
+        recordLvl2.bestTime = this.currentTime;
+        recordLvl2.records.time.push(recordLvl2.bestTime);
+      } else if (this.currentTime < recordLvl2.bestTime) {
+        recordLvl2.bestTime = this.currentTime;
+        recordLvl2.records.time.push(recordLvl2.bestTime);
+      }
+      console.log(recordLvl2.records.time);
     }
-    console.log(record.records.time);
   }
 
   checkGameWin() {
@@ -103,7 +144,7 @@ class Game {
         ctx.font = "150px Helvetica";
 
         ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
-        // this.showBestTime();
+        this.showBestTime();
         setTimeout(() => {
           initLevelOne();
         }, "1000");
@@ -118,6 +159,7 @@ class Game {
           canvas.width / 2 - 450,
           canvas.height / 3
         );
+        this.showBestTime();
         stopGame();
         ctx.fillText(
           `Your time: ${(game.timer * 0.01).toFixed(1)}`,
@@ -131,7 +173,7 @@ class Game {
       } else if (this.player.position.y > canvas.height) {
         ctx.fillStyle = "red";
         ctx.font = "150px Helvetica";
-
+        this.showBestTime();
         ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
 
         setTimeout(() => {

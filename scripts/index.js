@@ -48,7 +48,10 @@ displayStatusText = () => {
   "use strict";
   ctx.fillStyle = "black";
   ctx.font = "20px Helvetica";
-  ctx.fillText(`Best Time: ${record.bestTime}`, 20, 80);
+
+  levelOneActive
+    ? ctx.fillText(`Best Time: ${record.bestTime}`, 20, 80)
+    : ctx.fillText(`Best Time: ${recordLvl2.bestTime}`, 20, 80);
 
   levelOneActive
     ? ctx.fillText(`Level: 1`, 20, 40)

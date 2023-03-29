@@ -73,6 +73,36 @@ nav {
 
 /* NAVBAR END */
 
+.record-list {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+
+.record-list span {
+  font-size: 1.5rem;
+  color: rgb(0, 174, 255);
+  text-shadow: 0 0 0.105em var(--clr-orange-neon);
+  margin: 0;
+}
+
+.record-list ol {
+  padding: 10rem;
+}
+
+.record-list li {
+  font-size: 1.5rem;
+  color: rgb(0, 174, 255);
+  text-shadow: 0 0 0.105em var(--clr-orange-neon);
+  margin: 0;
+}
+
+.record-list li p {
+  font-size: 1.5rem;
+  color: rgb(0, 174, 255);
+  text-shadow: 0 0 0.105em var(--clr-orange-neon);
+}
+
 .flex {
   display: flex;
   gap: 1rem;
@@ -115,7 +145,7 @@ button:hover {
 }
 
 h1 {
-  font-size: 10rem;
+  font-size: 8rem;
   color: rgb(0, 174, 255);
   text-shadow: 0 0 0.105em var(--clr-orange-neon);
   margin: 0;
