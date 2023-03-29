@@ -66,8 +66,8 @@ class Game {
         player.speed.y = 0;
         player.gravity = 0;
         ctx.fillStyle = "red";
-        ctx.font = "150px Helvetica";
-        ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
+        ctx.font = "100px Inter";
+        // ctx.fillText(`GAME OVER`, canvas.width / 2 - 250, 100);
 
         initLevelOne();
         initLevelTwo();
@@ -119,7 +119,7 @@ class Game {
       if (this.frames > 9200) {
         this.currentTime = this.timer;
         ctx.fillStyle = "green";
-        ctx.font = "120px Helvetica";
+        ctx.font = "100px Inter";
         ctx.fillText(
           `LEVEL CLEARED!`,
           canvas.width / 2 - 450,
@@ -127,6 +127,7 @@ class Game {
         );
         this.showBestTime();
         stopGame();
+        stopMusic();
 
         ctx.fillText(
           `Your time: ${(game.timer * 0.01).toFixed(1)}`,
@@ -141,10 +142,11 @@ class Game {
         }, "2000");
       } else if (this.player.position.y > canvas.height) {
         ctx.fillStyle = "red";
-        ctx.font = "150px Helvetica";
+        ctx.font = "100px Inter";
 
-        ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
-        this.showBestTime();
+        ctx.fillText(`GAME OVER`, canvas.width / 2 - 250, 100);
+
+        stopMusic();
         setTimeout(() => {
           initLevelOne();
         }, "1000");
@@ -153,7 +155,7 @@ class Game {
       if (this.frames > 10000) {
         this.currentTime = this.timer;
         ctx.fillStyle = "green";
-        ctx.font = "120px Helvetica";
+        ctx.font = "100px Inter";
         ctx.fillText(
           `LEVEL CLEARED!`,
           canvas.width / 2 - 450,
@@ -161,6 +163,7 @@ class Game {
         );
         this.showBestTime();
         stopGame();
+        stopMusic();
         ctx.fillText(
           `Your time: ${(game.timer * 0.01).toFixed(1)}`,
           canvas.width / 2 - 450,
@@ -173,7 +176,7 @@ class Game {
       } else if (this.player.position.y > canvas.height) {
         ctx.fillStyle = "red";
         ctx.font = "150px Helvetica";
-        this.showBestTime();
+
         ctx.fillText(`GAME OVER`, canvas.width / 2 - 450, canvas.height / 2);
 
         setTimeout(() => {

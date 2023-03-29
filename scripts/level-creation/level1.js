@@ -51,7 +51,7 @@ let platforms = [
   new Platform({ x: 8600, y: 500, image: htmlBackground }),
   new Platform({ x: 9000, y: 100, image: cssBackground }),
   new Platform({ x: 9500, y: 700, image: htmlBackground }),
-  new Platform({ x: 10000, y: 600, image: javaScriptBackground }),
+  new Platform({ x: 10200, y: 600, image: nodeLogo }),
 ];
 
 // let enemies = [

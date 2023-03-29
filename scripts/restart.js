@@ -5,6 +5,7 @@ function initLevelOne() {
   levelOne = new LevelOne(player);
   game = new Game(player, levelOne);
   frames = game.frames;
+  playMusic();
 
   //game testing
   floor = new Platform({ x: 0, y: canvas.height - 80, image: platformImage });
@@ -35,7 +36,7 @@ function initLevelOne() {
     new Platform({ x: 8600, y: 500, image: htmlBackground }),
     new Platform({ x: 9000, y: 100, image: cssBackground }),
     new Platform({ x: 9500, y: 700, image: htmlBackground }),
-    new Platform({ x: 10000, y: 600, image: javaScriptBackground }),
+    new Platform({ x: 10200, y: 600, image: nodeLogo }),
   ];
 
   // let enemies = [
@@ -77,7 +78,7 @@ function initLevelOne() {
     new GameObjects({ x: 9200, y: 0, image: cLogo }),
     new GameObjects({ x: 9200, y: 700, image: cLogo }),
     new GameObjects({ x: 9400, y: 0, image: cLogo }),
-    new GameObjects({ x: 9750, y: 700, image: reactLogo }),
+    new GameObjects({ x: 9750, y: 700, image: cLogo }),
   ];
 }
 
@@ -85,6 +86,7 @@ function initLevelTwo() {
   player = new Player("blue");
   frames = game.frames;
   game = new Game(player, levelOne);
+  playMusic();
 
   // game testing
   floor = new Platform({ x: 0, y: canvas.height - 80, image: platformImage });
@@ -92,28 +94,24 @@ function initLevelTwo() {
   hills = new GenericBackground({ x: 0, y: 500, image: paralaxBackground });
   platformsLvl2 = [
     new Platform({ x: -500, y: canvas.height - 80, image: platformImage }),
-    new Platform({ x: 1400, y: 500, image: htmlBackground }),
-    new Platform({ x: 2400, y: 300, image: javaScriptBackground }),
+    new Platform({ x: 800, y: 650, image: htmlBackground }),
+    new Platform({ x: 1400, y: 600, image: htmlBackground }),
+    new Platform({ x: 1800, y: 400, image: htmlBackground }),
+    new Platform({ x: 2400, y: 300, image: htmlBackground }),
+    new Platform({ x: 2800, y: 700, image: htmlBackground }),
     new Platform({ x: 3400, y: 500, image: htmlBackground }),
+    new Platform({ x: 3900, y: 600, image: htmlBackground }),
     new Platform({ x: 4500, y: 600, image: cssBackground }),
-    new Platform({ x: 5300, y: 500, image: javaScriptBackground }),
-    new Platform({ x: 6500, y: 400, image: htmlBackground }),
-    new Platform({ x: 7900, y: 400, image: javaScriptBackground }),
-    new Platform({ x: 9000, y: canvas.height - 90, image: cssBackground }),
-    new Platform({
-      x: 9500,
-      y: canvas.height - 90,
-      image: javaScriptBackground,
-    }),
-    new Platform({ x: 10000, y: canvas.height - 90, image: htmlBackground }),
-    new Platform({ x: 11000, y: canvas.height - 90, image: cssBackground }),
-    new Platform({
-      x: 12000,
-      y: canvas.height - 90,
-      image: javaScriptBackground,
-    }),
-    new Platform({ x: 13000, y: canvas.height - 90, image: htmlBackground }),
-    new Platform({ x: 14000, y: canvas.height - 90, image: cssBackground }),
+    new Platform({ x: 5300, y: 500, image: cssBackground }),
+    new Platform({ x: 5900, y: 300, image: cssBackground }),
+    new Platform({ x: 6400, y: 700, image: cssBackground }),
+    new Platform({ x: 7100, y: 400, image: cssBackground }),
+    new Platform({ x: 7800, y: 650, image: cssBackground }),
+    new Platform({ x: 8400, y: 450, image: javaScriptBackground }),
+    new Platform({ x: 9000, y: 300, image: javaScriptBackground }),
+    new Platform({ x: 9500, y: 500, image: javaScriptBackground }),
+    new Platform({ x: 10100, y: 700, image: javaScriptBackground }),
+    new Platform({ x: 10900, y: 500, image: reactLogo }),
   ];
 
   // let enemies = [
@@ -153,5 +151,18 @@ function initLevelTwo() {
     new GameObjects({ x: 7300, y: 0, image: cSharpLogo }),
     new GameObjects({ x: 7750, y: 400, image: cSharpLogo }),
     new GameObjects({ x: 7900, y: 700, image: cSharpLogo }),
+    new GameObjects({ x: 8200, y: 100, image: cSharpLogo }),
+    new GameObjects({ x: 8900, y: 200, image: cSharpLogo }),
+    new GameObjects({ x: 9100, y: 700, image: cSharpLogo }),
+    new GameObjects({ x: 9500, y: 800, image: cSharpLogo }),
+    new GameObjects({ x: 9800, y: 600, image: cSharpLogo }),
+    new GameObjects({ x: 10000, y: 100, image: cSharpLogo }),
+    new GameObjects({ x: 10350, y: 900, image: cSharpLogo }),
+    new GameObjects({ x: 10450, y: 100, image: cSharpLogo }),
+    new GameObjects({ x: 10550, y: 900, image: cSharpLogo }),
+    new GameObjects({ x: 10650, y: 100, image: cSharpLogo }),
+    new GameObjects({ x: 10350, y: 500, image: cSharpLogo }),
+    new GameObjects({ x: 10450, y: 600, image: cSharpLogo }),
+    new GameObjects({ x: 10650, y: 500, image: cSharpLogo }),
   ];
 }

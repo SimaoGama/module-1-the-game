@@ -46,27 +46,53 @@ let levelTwoActive = false;
 
 displayStatusText = () => {
   "use strict";
-  ctx.fillStyle = "black";
-  ctx.font = "20px Helvetica";
 
-  levelOneActive
-    ? ctx.fillText(`Best Time: ${record.bestTime}`, 20, 80)
-    : ctx.fillText(`Best Time: ${recordLvl2.bestTime}`, 20, 80);
+  if (levelOneActive) {
+    ctx.fillStyle = "dark blue";
+    ctx.font = "18px Inter";
+  } else {
+    ctx.fillStyle = "white";
+    ctx.font = "18px Inter";
+  }
 
   levelOneActive
     ? ctx.fillText(`Level: 1`, 20, 40)
     : ctx.fillText(`Level: 2`, 20, 40);
+
+  ctx.fillText(`Time: ${(game.timer * 0.01).toFixed(1)}`, 20, 120);
+
+  levelOneActive
+    ? ctx.fillText(`Best Time: ${record.bestTime}`, 20, 80)
+    : ctx.fillText(`Best Time: ${recordLvl2.bestTime}`, 20, 80);
 
   // if (game.frames < 0) {
   //   ctx.fillText(`Frames: 0`, 20, 40);
   // } else ctx.fillText(`Frames: ${game.frames}`, 20, 40);
 
   // ctx.fillText(`Points: ${game.points}`, 20, 140);
-  ctx.fillText(`Time: ${(game.timer * 0.01).toFixed(1)}`, 100, 40);
-  ctx.fillText(`Quit Game: Q`, 20, 120);
+  // ctx.globalAlpha = 0.2;
+
+  ctx.fillText(`Move Forward: D`, canvas.width - 200, 40);
+  ctx.fillText(`Move Backward: A`, canvas.width - 200, 80);
+  ctx.fillText(`Quit Game: Q`, canvas.width - 200, 120);
 
   //ctx.fillText(`Timer: ${convertSeconds(game.timer)}`, 20, 190);
 };
+const levelOneAudio = new Audio("audio/Audio-lvl-1.ogg");
+const levelTwoAudio = new Audio("audio/Audio-lvl-2.ogg");
+
+function playMusic() {
+  levelOneActive ? levelOneAudio.play() : levelTwoAudio.play();
+}
+function stopMusic() {
+  if (levelOneActive) {
+    levelOneAudio.pause();
+    levelOneAudio.currentTime = 0;
+  } else {
+    levelTwoAudio.pause();
+    levelTwoAudio.currentTime = 0;
+  }
+}
 
 function stopGame() {
   clearInterval(intervalId);
@@ -238,6 +264,7 @@ window.addEventListener("keydown", (event) => {
       break;
     case "q":
       mainScreen();
+      stopMusic();
   }
 });
 
