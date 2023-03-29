@@ -21,6 +21,8 @@ class Player {
     this.width = 90;
     this.height = 100;
 
+    this.lives = 3;
+
     this.gravity = 0.2;
     this.index = 1;
     this.loaded = false;

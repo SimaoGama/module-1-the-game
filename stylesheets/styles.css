@@ -72,35 +72,47 @@ nav {
 }
 
 /* NAVBAR END */
-
-.record-list {
-  position: absolute;
+.records-list {
   display: flex;
+
   align-items: center;
+  justify-content: space-around;
 }
 
-.record-list span {
+#record-list-one {
+  position: relative;
+  justify-content: end;
+  display: flex;
+  align-items: flex-start;
+}
+
+#record-list-one ul {
+  padding: 5rem;
+}
+
+#record-list-one li {
   font-size: 1.5rem;
   color: rgb(0, 174, 255);
   text-shadow: 0 0 0.105em var(--clr-orange-neon);
   margin: 0;
 }
 
-.record-list ol {
-  padding: 10rem;
+#record-list-two {
+  position: relative;
+  justify-content: end;
+  display: flex;
+  align-items: flex-start;
 }
 
-.record-list li {
+#record-list-two ul {
+  padding: 5rem;
+}
+
+#record-list-two li {
   font-size: 1.5rem;
   color: rgb(0, 174, 255);
   text-shadow: 0 0 0.105em var(--clr-orange-neon);
   margin: 0;
-}
-
-.record-list li p {
-  font-size: 1.5rem;
-  color: rgb(0, 174, 255);
-  text-shadow: 0 0 0.105em var(--clr-orange-neon);
 }
 
 .flex {
@@ -148,6 +160,17 @@ h1 {
   display: flex;
   justify-content: center;
   font-size: 8rem;
+  color: rgb(0, 174, 255);
+  text-shadow: 0 0 0.105em var(--clr-orange-neon);
+  margin: 0;
+}
+
+h2 {
+  display: flex;
+  display: inline;
+  position: static;
+  justify-content: center;
+  font-size: 4rem;
   color: rgb(0, 174, 255);
   text-shadow: 0 0 0.105em var(--clr-orange-neon);
   margin: 0;

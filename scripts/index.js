@@ -44,22 +44,20 @@ const platformImage = createImage("./images/platform.png");
 let levelOneActive = false;
 let levelTwoActive = false;
 
+// let attemptsLeft = 3;
+
 displayStatusText = () => {
   "use strict";
 
-  if (levelOneActive) {
-    ctx.fillStyle = "dark blue";
-    ctx.font = "18px Inter";
-  } else {
-    ctx.fillStyle = "white";
-    ctx.font = "18px Inter";
-  }
+  ctx.fillStyle = "white";
+  ctx.font = "18px Inter";
 
   levelOneActive
     ? ctx.fillText(`Level: 1`, 20, 40)
     : ctx.fillText(`Level: 2`, 20, 40);
 
   ctx.fillText(`Time: ${(game.timer * 0.01).toFixed(1)}`, 20, 120);
+  // ctx.fillText(`ATTEMPTS: ${player.lives}`, 20, 160);
 
   levelOneActive
     ? ctx.fillText(`Best Time: ${record.bestTime}`, 20, 80)
